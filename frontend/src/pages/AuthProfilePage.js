@@ -1,14 +1,16 @@
 import React from "react";
-import { makeStyles, useTheme } from '@mui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/styles';
 import { FilledInput } from '@mui/material';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+  }
+}));
 
 function LandingPage() {
     const classes = useStyles();
     const theme = useTheme();
-    const useStyles = makeStyles((theme) => ({
- 
-    }));
-    
     
     return (
       <main>
