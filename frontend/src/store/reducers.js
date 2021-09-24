@@ -1,8 +1,7 @@
 import { combineReducers } from 'redux'
 import { formDataReducer } from './dataStorage/reducers'
 
-const createRootReducer = (history) => combineReducers({
-  router: connectRouter(history),
+const createRootReducer = () => combineReducers({
   formData: formDataReducer,
 })
 export default createRootReducer
