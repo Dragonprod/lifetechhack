@@ -1,16 +1,21 @@
-import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, String, Integer, Date, ForeignKey
+from sqlalchemy import Column, String, Integer, Date, ForeignKey, Float
 import os
-
-from sqlalchemy.sql.sqltypes import Float
 
 engine_sql_lite = create_engine("sqlite:///database.db", connect_args={
     "check_same_thread": False})
 Session = sessionmaker(bind=engine_sql_lite)
 Base = declarative_base(bind=engine_sql_lite)
+
+
+def get_db():
+    db = Session()
+    try:
+        yield db
+    finally:
+        db.close()
 
 
 class Region(Base):
@@ -47,9 +52,10 @@ class AverageMonthlyAccruedSalaryOfEmployees(Base):
     по городским округам и муниципальным районам Удмуртской Республики"""
     __tablename__ = "averge_monthly_accrued_salary_of_employees"
     id = Column(Integer, primary_key=True)
-    region = Column(Integer, ForeignKey('region.id'),
-                    default=None, nullable=True)
-    city = Column(Integer, ForeignKey('city.id'), default=None, nullable=True)
+    region_id = Column(Integer, ForeignKey('region.id'),
+                       default=None, nullable=True)
+    city_id = Column(Integer, ForeignKey('city.id'),
+                     default=None, nullable=True)
     # Очётный месяц
     count = Column(Integer)
     date = Column(Date)
@@ -86,9 +92,9 @@ class WagesOrganization(Base):
     date = Column(Date)
 
 
-class IncomeDebtRegion(Base):
+class IncomeRegion(Base):
     """Доходы регионов"""
-    __tablename__ = "IncomeDebtRegion"
+    __tablename__ = "IncomeRegion"
     id = Column(Integer, primary_key=True)
     region_id = Column(Integer, ForeignKey('region.id'))
     date = Column(Date)
@@ -216,7 +222,6 @@ class DepositsOfIndividuals(Base):
     id = Column(Integer, primary_key=True)
     date = Column(Date)
     count = Column(Integer)
-    contribution_per = Column(Integer)
 
 
 class DebtsOfIndividuals(Base):
@@ -225,7 +230,6 @@ class DebtsOfIndividuals(Base):
     id = Column(Integer, primary_key=True)
     date = Column(Date)
     count = Column(Integer)
-    contribution_per = Column(Integer)
 
 
 class ServicesOrProductsOfThePrice(Base):
@@ -234,7 +238,7 @@ class ServicesOrProductsOfThePrice(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(256))
     unit = Column(String(64))
-    price = Column(Integer)
+    price = Column(Float)
     date = Column(Date)
 
 
