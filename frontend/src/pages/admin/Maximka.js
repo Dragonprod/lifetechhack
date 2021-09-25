@@ -1,13 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Line } from "react-chartjs-2";
+import API from "../../api/api";
+import Button from "@mui/material/Button";
 
 function MaximkaPage(props) {
+  const [labels, setLabels] = React.useState([]);
+  const [dataset, setDataset] = React.useState([]);
+
+  const getData = async (e) => {
+    const response = await API.get(`region/income/2`);
+
+    for (var i = 0; i < response.data.length; i++) {
+      setLabels((prevLabels) => [...prevLabels, response.data[i].date]);
+      setDataset((prevLabels) => [...prevLabels, response.data[i].count]);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   const data = {
-    labels: ["1", "2", "3", "4", "5", "6"],
+    labels: labels,
     datasets: [
       {
-        label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
+        label: "Region income",
+        data: dataset,
         fill: false,
         backgroundColor: "rgb(255, 99, 132)",
         borderColor: "rgba(255, 99, 132, 0.2)",
@@ -15,24 +33,22 @@ function MaximkaPage(props) {
     ],
   };
 
-  const options = {
-    scales: {
-      yAxes: [
-        {
-          ticks: {
-            beginAtZero: true,
+    const options = {
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+            },
           },
-        },
-      ],
-    },
-  };
+        ],
+      },
+    };
+
   return (
-    <>
-      <div className="header">
-        <h1 className="title">React это просто React (C) Максим</h1>
-      </div>
-      <Line data={data} options={options} />
-    </>
+    <div>
+      <Line height={500} width={500} data={data} options={options}/>
+    </div>
   );
 }
 
