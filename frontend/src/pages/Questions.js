@@ -17,9 +17,12 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import Paper from "@mui/material/Paper";
 import Avatar from "@mui/material/Avatar";
-
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
+import API from "../api/api";
 
 const married = [{ label: "Женат" }, { label: "Не женат" }];
 
@@ -130,9 +133,13 @@ const useStyles = makeStyles((theme) => ({
 function Questions(props) {
   const classes = useStyles();
   const theme = useTheme();
+  const redirect = props;
+
   const [open, setOpen] = React.useState(false);
   const [step, setStep] = React.useState(0);
   const [hasWife, setHasWife] = React.useState(false);
+  const [maintenance, setMaintenance] = React.useState(false);
+  const [currentAns, setCurrentAns] = React.useState(0)
 
   const step1 = step == 0 ? true : false;
   const step2 = step == 1 ? true : false;
@@ -141,6 +148,19 @@ function Questions(props) {
   const step5 = step == 4 ? true : false;
   const step6 = step == 5 ? true : false;
   const step7 = step == 6 ? true : false;
+  const step8 = step == 7 ? true : false;
+
+  const handleMaintenanceClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setMaintenance(false);
+  };
+
+  const handleMaintenanceOpen = () => {
+    setMaintenance(true);
+    console.log("masiiaidia");
+  };
 
   const handleClick = () => {
     setOpen(!open);
@@ -148,8 +168,6 @@ function Questions(props) {
 
   const handleStepNext = () => {
     setStep((prevStep) => prevStep + 1);
-    if(step == 7) 
-      this.props.push('/profile/requests')
   };
 
   const handleStepBack = () => {
@@ -160,6 +178,20 @@ function Questions(props) {
     console.log(value);
     if (value.label == "Женат") setHasWife(true);
     else setStep((prevStep) => prevStep + 2);
+  };
+
+  const handleClose = () => {
+    redirect.push("/profile/requests");
+  };
+
+  const calculationProcess = async () => {
+    const data = {ans: currentAns, step: step}
+    const response = await API.put("calc/start/1", data);
+  };
+
+  const calculationProcessStop = async () => {
+    const data = { report_id: 1 };
+    const response = await API.post("calc/stop", data);
   };
 
   return (
@@ -198,6 +230,7 @@ function Questions(props) {
             Республика <br /> Удмуртия
           </h2>
         </div>
+
         <List
           sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
           component="nav"
@@ -217,6 +250,23 @@ function Questions(props) {
             <ListItemText primary="Мои данные" />
             {open ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
+
+          {/* <Snackbar
+            anchorOrigin={{ vertical: "top", horizontal: "right" }}
+            open={true}
+            autoHideDuration={3000}
+            onClose={handleMaintenanceClose}
+          >
+            <Alert
+              severity="error"
+              onClose={handleMaintenanceClose}
+              sx={{ width: "100%" }}
+            >
+              <AlertTitle>Ошибка</AlertTitle>
+              Проверьте — <strong>логин или пароль!</strong>
+            </Alert>
+          </Snackbar> */}
+
           <Collapse in={open} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <ListItemButton
@@ -226,18 +276,18 @@ function Questions(props) {
                 <ListItemText style={{ marginLeft: 24 }} primary="Мои данные" />
               </ListItemButton>
 
-              <ListItemButton sx={{ pl: 2 }}>
+              <ListItemButton sx={{ pl: 2 }} onClick={handleMaintenanceOpen}>
                 <ListItemText
                   style={{ marginLeft: 24 }}
                   primary="Мое имущество"
                 />
               </ListItemButton>
 
-              <ListItemButton sx={{ pl: 2 }}>
+              <ListItemButton sx={{ pl: 2 }} onClick={handleMaintenanceOpen}>
                 <ListItemText style={{ marginLeft: 24 }} primary="Моя семья" />
               </ListItemButton>
 
-              <ListItemButton sx={{ pl: 2 }}>
+              <ListItemButton sx={{ pl: 2 }} onClick={handleMaintenanceOpen}>
                 <ListItemText style={{ marginLeft: 24 }} primary="Моя работа" />
               </ListItemButton>
             </List>
@@ -251,6 +301,7 @@ function Questions(props) {
           </ListItemButton>
         </List>
       </nav>
+
       <section className={classes.mainContent}>
         {step1 && (
           <Paper elevation={3} className={classes.profileContainer}>
@@ -545,13 +596,16 @@ function Questions(props) {
           </Paper>
         )}
 
-        {/* <Paper elevation={3} className={classes.profileContainer}>
+        {step8 && (
+          <Paper elevation={3} className={classes.profileContainer}>
             <img
               src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album"
               alt="Логотип министерства Удмуртии"
             />
             <h1 className={classes.questionNumber}>Ответ 1</h1>
-            <p className={classes.questionText}>Ваш доход превышает прожиточный минимум</p>
+            <p className={classes.questionText}>
+              Ваш доход превышает прожиточный минимум
+            </p>
             <Button
               style={{
                 background: "#F93866",
@@ -559,12 +613,13 @@ function Questions(props) {
                 marginTop: "4em",
                 fontWeight: 900,
               }}
-              onClick={handleStepNext}
+              onClick={handleClose}
               variant="contained"
             >
               Закрыть
             </Button>
-          </Paper> */}
+          </Paper>
+        )}
 
         {/* <Paper elevation={3} className={classes.profileContainer}>
             <img
