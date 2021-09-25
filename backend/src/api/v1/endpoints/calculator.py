@@ -34,7 +34,7 @@ async def start_calc(user_id: int, db: Session = Depends(get_db)):
 @router.put(
     "/calc/{report_id}",
     response_model=QuestionBaseResponse,
-    tags=["calculation"],
+    tags=["Calculation"],
     status_code=HTTP_200_OK,
 )
 async def update(report_id: int, ans: str, step: int, db: Session = Depends(get_db)):
@@ -48,7 +48,7 @@ async def update(report_id: int, ans: str, step: int, db: Session = Depends(get_
 @router.post(
     "/calc/stop",
     response_model=CalcModel,
-    tags=["calculation"],
+    tags=["Calculation"],
     status_code=HTTP_200_OK,
 )
 async def stop(report_id: int, db: Session = Depends(get_db)):
