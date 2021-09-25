@@ -6,7 +6,7 @@ import AdminProfilePage from "./pages/admin/AdminProfilePage";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import AuthProfilePage from "./pages/AuthProfilePage";
-
+import HeatMapPage from "./pages/admin/HeatMapPage"
 function App() {
   return (
     <main>
@@ -16,6 +16,7 @@ function App() {
         <Route path="/login" component={LoginPage}> */}
         <Route path="/profile" component={UserProfilePage} />
         <Route path="/auth" component={AuthProfilePage} />
+        <Route path="/map" component={HeatMapPage} />
       </Switch>
     </main>
   );
