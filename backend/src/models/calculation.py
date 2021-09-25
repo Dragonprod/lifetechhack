@@ -16,7 +16,8 @@ class QuestionInProperty(QuestionBase):
 class QuestionInHealth(QuestionBase):
     disabledPerson: Optional[str] = None
     chronicDiseases: Optional[str] = None
-    pregnancy: Optional[str] = None    
+    pregnancy: Optional[str] = None
+
 
 class QuestionBaseResponse(QuestionBase):
     result: int
