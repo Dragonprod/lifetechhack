@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 import typing
 from datetime import date
+from typing import List
 
 
 class OrganizationModel(BaseModel):
@@ -12,11 +13,11 @@ class OrganizationModel(BaseModel):
 
 
 class BaseRelationOrganizationModel(BaseModel):
-    id = int
-    organization_id = int
+    id: int
+    organization_id: int
     # Очётный месяц
-    count = int
-    date = date
+    count: int
+    date: date
 
     class Config:
         orm_mode = True
