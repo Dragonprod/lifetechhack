@@ -5,19 +5,19 @@ from ....core.jwt import create_access_token
 from ....database.database import User, get_db, Session
 from fastapi import APIRouter, Body, Depends
 from starlette.exceptions import HTTPException
-from starlette.status import HTTP_201_CREATED, HTTP_202_ACCEPTED, HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND
+from starlette.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_202_ACCEPTED, HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND
 from fastapi.responses import ORJSONResponse
 
 from ....crud.user import create_user, find_user_by_email
 from ....models.user import UserBase, UserInCreate, UserInDb, UserInLogin, UserInResponse
-
+from fastapi.responses import JSONResponse
 
 router = APIRouter()
 
 
 @router.post(
     "/users/create",
-    tags=["authentication"],
+    tags=["Authentication"],
     status_code=HTTP_201_CREATED,
 )
 async def register_user(user: UserInCreate = Body(...), db: Session = Depends(get_db)):
@@ -31,12 +31,12 @@ async def register_user(user: UserInCreate = Body(...), db: Session = Depends(ge
         )
     else:
         return HTTPException(HTTP_400_BAD_REQUEST)
-
+        
 
 @router.post(
     "/users/login",
-    tags=["authentication"],
-    status_code=HTTP_202_ACCEPTED,
+    tags=["Authentication"],
+    status_code=HTTP_200_OK
 )
 async def login_user(user: UserInLogin = Body(...), db: Session = Depends(get_db)):
     user_finded = db.query(User).filter(User.email == user.email).first()

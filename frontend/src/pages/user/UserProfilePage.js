@@ -1,6 +1,8 @@
 import React from "react";
-import { makeStyles, useTheme } from "@material-ui/styles";
-// import { List, sliderClasses } from "@mui/material";
+import { push } from "connected-react-router";
+import { connect } from "react-redux";
+import { setFormData } from "../../store/dataStorage/actions";
+import { makeStyles, useTheme, withStyles } from '@material-ui/styles';
 import Button from "@mui/material/Button";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -15,6 +17,7 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import Paper from "@mui/material/Paper";
 import Avatar from "@mui/material/Avatar";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -250,4 +253,13 @@ function UserProfilePage() {
   );
 }
 
-export default UserProfilePage;
+const mapDispatchToProps = {
+  setFormData,
+  push,
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(withStyles(useStyles)(UserProfilePage));
+
