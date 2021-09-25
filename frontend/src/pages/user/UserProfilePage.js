@@ -139,7 +139,7 @@ function UserProfilePage(props) {
             <NotificationsActiveIcon fontSize="large" onClick={() => {console.log('NotifyClick')}}/>
           </li>
           <li className={classes.li}>
-              <Avatar sx={{ width: 48, height: 48 }} onClick={() => {console.log('Avatar Click')}}>IV</Avatar>
+              <Avatar sx={{ width: 48, height: 48 }} onClick={() => {console.log('Avatar Click')}} src='https://mui.com/static/images/avatar/1.jpg'></Avatar>
           </li>
         </ul>
       </header>
@@ -209,7 +209,7 @@ function UserProfilePage(props) {
       <div className={classes.mainContent}>
         <Paper elevation={3} className={classes.profileContainer}>
           <div className={classes.nameAndPhotoContainer}>
-            <Avatar sx={{ width: 100, height: 100 }}>IV</Avatar>
+            <Avatar sx={{ width: 100, height: 100 }} src='https://mui.com/static/images/avatar/1.jpg'></Avatar>
             <h2 style={{ fontSize: "36px" }}>Иванов Иван Иванович</h2>
           </div>
           <div className={classes.profileForm}>

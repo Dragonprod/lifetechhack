@@ -18,11 +18,10 @@ class UserInDb(UserBase):
 class UserInLogin(BaseModel):
     email: str
     password: str
-    is_admin: bool
 
 
 class UserInCreate(UserInLogin):
-    email: str
+    is_admin: bool
 
 
 class UserInResponse(BaseModel):
