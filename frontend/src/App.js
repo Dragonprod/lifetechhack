@@ -5,7 +5,7 @@ import CalculatorPage from "./pages/user/CalculatorPage";
 import AdminProfilePage from "./pages/admin/AdminProfilePage";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
-import AuthProfilePage from "./pages/AuthProfilePage"
+import AuthProfilePage from "./pages/AuthProfilePage";
 
 function App() {
   return (
