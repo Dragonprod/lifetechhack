@@ -4,7 +4,7 @@ from ....database.models.population import PopulationModel
 from fastapi.responses import ORJSONResponse
 from fastapi import APIRouter
 from fastapi import Depends
-
+from typing import List
 
 router = APIRouter(
     prefix="/population",
@@ -25,13 +25,15 @@ async def create(year: date, persent: int, db: Session = Depends(get_db)):
     return value
 
 
-@router.get("/ValueLivingWag{id}", response_model=PopulationModel, response_class=ORJSONResponse)
-async def get(id: int, db: Session = Depends(get_db)):
+@router.get("/ValueLivingWag", response_model=List[PopulationModel], response_class=ORJSONResponse)
+async def get(id: int = None, db: Session = Depends(get_db)):
     """Доля населения с 
     денежными доходами
     ниже величины 
     прожиточного минимума"""
-    return db.query(BelowTheValueLivingWage).filter(BelowTheValueLivingWage.id == id).first()
+    filter = (None == None) if id == None else (
+        IncomePopulation.id == id)
+    return db.query(IncomePopulation).filter(filter).all()
 
 
 @router.post("/income", response_model=PopulationModel, response_class=ORJSONResponse)
@@ -43,10 +45,12 @@ async def create(date: date, count: int, db: Session = Depends(get_db)):
     return income
 
 
-@router.get("/income/{id}", response_model=PopulationModel, response_class=ORJSONResponse)
-async def get(id: int, db: Session = Depends(get_db)):
+@router.get("/income", response_model=List[PopulationModel], response_class=ORJSONResponse)
+async def get(id: int = None, db: Session = Depends(get_db)):
     """Доходы населения"""
-    return db.query(IncomePopulation).filter(IncomePopulation.id == id).first()
+    filter = (None == None) if id == None else (
+        IncomePopulation.id == id)
+    return db.query(IncomePopulation).filter(filter).all()
 
 
 @router.post("/loss", response_model=PopulationModel, response_class=ORJSONResponse)
@@ -58,10 +62,12 @@ async def create(date: date, count: int, db: Session = Depends(get_db)):
     return loss
 
 
-@router.get("/loss/{id}", response_model=PopulationModel, response_class=ORJSONResponse)
-async def get(id: int, db: Session = Depends(get_db)):
+@router.get("/loss", response_model=List[PopulationModel], response_class=ORJSONResponse)
+async def get(id: int = None, db: Session = Depends(get_db)):
     """Убытки населения"""
-    return db.query(LossPopulation).filter(LossPopulation.id == id).first()
+    filter = (None == None) if id == None else (
+        LossPopulation.id == id)
+    return db.query(LossPopulation).filter(filter).all()
 
 
 @router.post("/deposit", response_model=PopulationModel, response_class=ORJSONResponse)
@@ -73,10 +79,12 @@ async def create(date: date, count: int, db: Session = Depends(get_db)):
     return deposit
 
 
-@router.get("/deposit/{id}", response_model=PopulationModel, response_class=ORJSONResponse)
-async def get(id: int, db: Session = Depends(get_db)):
+@router.get("/deposit", response_model=List[PopulationModel], response_class=ORJSONResponse)
+async def get(id: int = None, db: Session = Depends(get_db)):
     """Вклады (депозиты) физических лиц на рублевых счетах"""
-    return db.query(DepositsOfIndividuals).filter(DepositsOfIndividuals.id == id).first()
+    filter = (None == None) if id == None else (
+        DebtsOfIndividuals.id == id)
+    return db.query(DepositsOfIndividuals).filter(filter).all()
 
 
 @router.post("/debts", response_model=PopulationModel, response_class=ORJSONResponse)
@@ -88,7 +96,9 @@ async def create(date: date, count: int, db: Session = Depends(get_db)):
     return debts
 
 
-@router.get("/debts/{id}", response_model=PopulationModel, response_class=ORJSONResponse)
-async def get(id: int, db: Session = Depends(get_db)):
+@router.get("/debts", response_model=List[PopulationModel], response_class=ORJSONResponse)
+async def get(id: int = None, db: Session = Depends(get_db)):
     """Задолженность по рублевым кредитам физических лиц"""
-    return db.query(DebtsOfIndividuals).filter(DebtsOfIndividuals.id == id).first()
+    filter = (None == None) if id == None else (
+        DebtsOfIndividuals.id == id)
+    return db.query(DebtsOfIndividuals).filter(filter).all()

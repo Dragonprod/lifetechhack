@@ -24,6 +24,10 @@ class Region(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(128))
 
+    incomes = relationship('IncomeRegion', lazy='dynamic')
+    losses = relationship('LossRegion', lazy='dynamic')
+    debts = relationship('OverdueDebtRegion', lazy='dynamic')
+
 
 class District(Base):
     """Районы"""
@@ -31,12 +35,20 @@ class District(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(128))
 
+    incomes = relationship('IncomeDistrict', lazy='dynamic')
+    losses = relationship('LossDistrict', lazy='dynamic')
+    debts = relationship('OverdueDebtDistrict', lazy='dynamic')
+
 
 class City(Base):
     """Города"""
     __tablename__ = "city"
     id = Column(Integer, primary_key=True)
     name = Column(String(128))
+
+    incomes = relationship('IncomeCity', lazy='dynamic')
+    losses = relationship('LossCity', lazy='dynamic')
+    debts = relationship('OverdueDebtCity', lazy='dynamic')
 
 
 class Organization(Base):
@@ -49,6 +61,7 @@ class Organization(Base):
     wages = relationship('WagesOrganization', lazy='dynamic')
     incomes = relationship('IncomeOrganization', lazy='dynamic')
     losses = relationship('LossOrganization', lazy='dynamic')
+    debts = relationship('OverdueDebtOrganization', lazy='dynamic')
 
 
 class AverageMonthlyAccruedSalaryOfEmployees(Base):

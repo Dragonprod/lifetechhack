@@ -22,9 +22,11 @@ async def create(name: str, db: Session = Depends(get_db)):
     return organization
 
 
-@router.get("/{id}", response_model=OrganizationModel, response_class=ORJSONResponse)
-async def get(id: int, db: Session = Depends(get_db)):
-    return db.query(Organization).filter(Organization.id == id).first()
+@router.get("", response_model=List[OrganizationModel], response_class=ORJSONResponse)
+async def get(id: int = None, db: Session = Depends(get_db)):
+    filter = (None == None) if id == None else (
+        Organization.id == id)
+    return db.query(Organization).filter(filter).all()
 
 
 @router.post("/wages/{organization_id}", response_model=BaseRelationOrganizationModel, response_class=ORJSONResponse)
@@ -40,7 +42,7 @@ async def create(organization_id: int, count: int, date: date, db: Session = Dep
 
 @router.get("/wages/{organization_id}", response_model=List[BaseRelationOrganizationModel], response_class=ORJSONResponse)
 async def get(organization_id: int, db: Session = Depends(get_db)):
-    """ЗАРАБОТНАЯ ПЛАТА ОРГАНИЗАЦИИ"""
+    """Вся ЗАРАБОТНАЯ ПЛАТА ОРГАНИЗАЦИИ"""
     return db.query(WagesOrganization).filter(WagesOrganization.organization_id == organization_id).all()
 
 
@@ -57,7 +59,7 @@ async def create(organization_id: int, count: int, date: date, db: Session = Dep
 
 @router.get("/income/{organization_id}", response_model=List[BaseRelationOrganizationModel], response_class=ORJSONResponse)
 async def get(organization_id: int,  db: Session = Depends(get_db)):
-    """Доходы организации"""
+    """Все Доходы организации"""
     return db.query(IncomeOrganization).filter(IncomeOrganization.organization_id == organization_id).all()
 
 
@@ -74,7 +76,7 @@ async def create(organization_id: int, count: int, date: date, db: Session = Dep
 
 @router.get("/loss/{organization_id}", response_model=List[BaseRelationOrganizationModel], response_class=ORJSONResponse)
 async def get(organization_id: int,  db: Session = Depends(get_db)):
-    """убытки организации"""
+    """Все убытки организации"""
     return db.query(LossOrganization).filter(LossOrganization.organization_id == organization_id).all()
 
 
@@ -91,5 +93,5 @@ async def create(organization_id: int, count: int, date: date, db: Session = Dep
 
 @router.get("/debt/{organization_id}", response_model=List[BaseRelationOrganizationModel], response_class=ORJSONResponse)
 async def get(organization_id: int,  db: Session = Depends(get_db)):
-    """Просроченная задолженность"""
+    """Получение всех зодолжностей компании"""
     return db.query(OverdueDebtRegion).filter(OverdueDebtRegion.organization_id == organization_id).all()

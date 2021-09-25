@@ -1,6 +1,6 @@
-from backend.src.database.models.services import ServiceModel
+from ....database.models.services import ServiceModel
 from datetime import date
-from ....database.database import BelowTheValueLivingWage, ServicesOrProductsOfThePrice, get_db, Session
+from ....database.database import ServicesOrProductsOfThePrice, get_db, Session
 from ....database.models.population import PopulationModel
 from fastapi.responses import ORJSONResponse
 from fastapi import APIRouter
@@ -14,7 +14,7 @@ router = APIRouter(
 )
 
 
-@router.post("/create", response_model=ServiceModeliceModel, response_class=ORJSONResponse)
+@router.post("/create", response_model=ServiceModel, response_class=ORJSONResponse)
 async def create(name: str, unit: str, price: float, date: date, db: Session = Depends(get_db)):
     """Прайс покупок услуг или предметов или еды"""
 
@@ -25,7 +25,9 @@ async def create(name: str, unit: str, price: float, date: date, db: Session = D
     return service
 
 
-@router.get("/{id}", response_model=ServiceModel, response_class=ORJSONResponse)
-async def get(id: int, db: Session = Depends(get_db)):
+@router.get("", response_model=List[ServiceModel], response_class=ORJSONResponse)
+async def get(id: int = None, db: Session = Depends(get_db)):
     """Получение услуги"""
-    return db.query(ServicesOrProductsOfThePrice).filter(ServicesOrProductsOfThePrice.id == id).first()
+    filter = (None == None) if id == None else (
+        ServicesOrProductsOfThePrice.id == id)
+    return db.query(ServicesOrProductsOfThePrice).filter(filter).all()
