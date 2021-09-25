@@ -51,7 +51,7 @@ def test_region():
 
     for distirict in district_list:
         distirict = District(name=distirict)
-        db.add(region)
+        db.add(distirict)
         year = 2016
         for i in range(0, 60):
             date = datetime.date(year, i % 12+1, 1)
@@ -70,7 +70,7 @@ def test_region():
 
     for city in city_list:
         city = City(name=city)
-        db.add(region)
+        db.add(city)
         year = 2016
 
         for i in range(0, 60):
@@ -106,6 +106,7 @@ def test_region():
                          'деятельность в области здравоохранения и социальных услуг',
                          'деятельность в области культуры, спорта, организации досуга и развлечений',
                          'предоставление прочих видов услуг']
+    db.commit()
 
     for organization in organization_list:
         organization = Organization(name=organization)

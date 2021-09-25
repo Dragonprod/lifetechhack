@@ -6,7 +6,7 @@ psycopg2
 requests
 asyncio
 typing
-jwt
+pyjwt
 bcrypt
 passlib
 orjson

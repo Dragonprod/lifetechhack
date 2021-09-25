@@ -1,63 +1,50 @@
 from typing import Optional
 from pydantic import BaseModel
-from ..core.security import verify_password, get_password_hash
 
 
 class UserBase(BaseModel):
-    username: str
+    id: int
     email: str
-    avatar: Optional[str] = None
-    role_id: int
-    name: str
-    surname: str
-    patronymic: Optional[str] = None
+    is_admin: bool
+
+    class Config:
+        orm_mode = True
 
 
 class UserInDb(UserBase):
     password: str
 
-    def encode_password(self, passwd: str) -> str:
-        return get_password_hash(passwd)
-
-    def check_password(self, passwd: str) -> bool:
-        return verify_password(passwd, self.password)
-
 
 class UserInLogin(BaseModel):
     email: str
     password: str
+    is_admin: bool
 
 
 class UserInCreate(UserInLogin):
-    username: str
-    role_id: int
+    email: str
 
 
-class UserInResponse(UserBase):
+class UserInResponse(BaseModel):
     token: str
 
 
-class UserInDocuments(UserBase):
-    passportId: str
-    passportGiveDate: str
-    passportCode: str
-    passportGiveBy: str
-    passportBirthCity: str
+class UserInDocuments(BaseModel):
+    id: int
+    email: str
+    passportId: str = None
+    passportGiveDate: str = None
+    passportCode: str = None
+    passportGiveBy: str = None
+    passportBirthCity: str = None
+    snilsId: str = None
+    regStreet: str = None
+    regHouse: str = None
+    regFlat: int = None
 
-    snilsId: str
-
-    regStreet: str
-    regHouse: str
-    regFlat: int
-
-
-# class UserInFamily(UserBase):
-#     raise NotImplementedError
-
-
-# class UserInProperty(UserBase):
-#     raise NotImplementedError
+    class Config:
+        orm_mode = True
 
 
-# class UserInWork(UserBase):
-#     raise NotImplementedError
+class UserProfile(BaseModel):
+    user = UserBase

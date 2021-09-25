@@ -20,12 +20,13 @@
 
 ### Стек исользуемых технологий:
 
-1. Backend: FastAPI
-2. Frontend: React
+1. Backend: Python, FastAPI
+2. Frontend: React JS, Yandex Maps API, HTML, CSS, JavaScript
+3. Work: Git, Docker
 
 ### Демо:
 
-Демоверсия проекта находится по адресу: [test.com](https://test.com/) 
+Демоверсия проекта находится по адресу: [udmhelp.ru](https://udmhelp.ru/) 
 
 **Тестовые аккаунты:**\
 **admin:**\
