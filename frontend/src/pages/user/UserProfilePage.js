@@ -242,7 +242,7 @@ function UserProfilePage() {
               className={classes.dataField}
             >
               <h2>Пароль</h2>
-              <p className={classes.userData}>•••••••••••••••••••••••••</p>
+              <p className={classes.userData}>••••••••••••••••••</p>
               <Button variant="outlined">Изменить</Button>
             </Paper>
           </div>
