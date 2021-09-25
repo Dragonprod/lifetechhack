@@ -14,7 +14,6 @@ class DistrictModel(BaseModel):
 class BaseRelationDistrictModel(BaseModel):
     id: int
     district_id: int
-    # Очётный месяц
     count: int
     date: date
 
