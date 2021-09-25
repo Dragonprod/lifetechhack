@@ -9,3 +9,4 @@ class JWTMeta(BaseModel):
 
 class JWTUser(BaseModel):
     user_id: int
+    is_admin: bool

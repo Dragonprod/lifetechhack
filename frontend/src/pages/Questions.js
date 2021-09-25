@@ -21,7 +21,32 @@ import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
+<<<<<<< HEAD
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+
+const married = [
+  { label: 'Женат'},
+  { label: 'Не женат'},
+];
+
+const invalidGroups = [
+  { label: 'Нет'},
+  { label: 'Первая группа'},
+  { label: 'Вторая группа'},
+  { label: 'Третья группа'},
+];
+const illnesses = [
+  { label: 'Нет'},
+  { label: 'Нарушение осанки'},
+  { label: 'Астма'},
+  { label: 'Поллиноз'},
+  { label: 'Гипертензия'},
+];
+
+=======
 const married = [{ label: "Женат" }, { label: "Не женат" }];
+>>>>>>> 59ec7d18efc5109c627edb6e5e69415018a31c33
 
 const useStyles = makeStyles((theme) => ({
   mainContent: {
@@ -35,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   },
   questionText: {
     fontSize: "18px",
-    color: "rgba(0, 0, 0, 0.5)",
+    color: "#000",
   },
   profileContainer: {
     display: "flex",
@@ -218,59 +243,260 @@ function Questions(props) {
         </List>
       </nav>
       <section className={classes.mainContent}>
-        {!next && (
-          <Paper elevation={3} className={classes.profileContainer}>
-            <img
-              src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album"
-              alt="Логотип министерства Удмуртии"
-            />
-            <h1 className={classes.questionNumber}>Вопрос 1</h1>
-            <p className={classes.questionText}>Ваш ежемесячный доход:</p>
-            <input type="text" className={classes.inputField} />
+        {/* <Paper elevation={3} className={classes.profileContainer}>
+          <img src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album" alt="Логотип министерства Удмуртии" />
+          <h1 className={classes.questionNumber}>Вопрос 1</h1>
+          <p className={classes.questionText}>Ваш ежемесячный доход:</p>
+          <input type="text" className={classes.inputField} />
+          <Button
+            style={{
+              background: "#F93866",
+              padding: ".5em 3em",
+              marginTop: "4em",
+              fontWeight: 900,
+            }}
+            variant="contained"
+          >
+            Далее
+          </Button>
+        </Paper> */}
+
+        {/* <Paper elevation={3} className={classes.profileContainer}>
+          <img src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album" alt="Логотип министерства Удмуртии" />
+          <h1 className={classes.questionNumber}>Вопрос 2</h1>
+          <p className={classes.questionText}>Ваше семейное положение:</p>
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={married}
+            sx={{ width: 300 }}
+            renderInput={(params) => <TextField {...params} label="" />}
+          />
+          <div>
             <Button
+              style={{
+                background: "#3D348B",
+                padding: ".5em 3em",
+                marginTop: "4em",
+                fontWeight: 900,
+                marginRight: "2em"
+              }}
+              variant="contained"
+            >
+              Назад
+            </Button>
+            <Button
+            style={{
+              background: "#F93866",
+              padding: ".5em 3em",
+              marginTop: "4em",
+              fontWeight: 900,
+            }}
+            variant="contained"
+          >
+            Далее
+          </Button>
+          </div>
+        </Paper> */}
+        
+        {/* <Paper elevation={3} className={classes.profileContainer}>
+          <img src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album" alt="Логотип министерства Удмуртии" />
+          <h1 className={classes.questionNumber}>Вопрос 3</h1>
+          <p className={classes.questionText}>Количество детей:</p>
+          <input type="text" className={classes.inputField} />
+          <div>
+            <Button
+              style={{
+                background: "#3D348B",
+                padding: ".5em 3em",
+                marginTop: "4em",
+                fontWeight: 900,
+                marginRight: "2em"
+              }}
+              variant="contained"
+            >
+              Назад
+            </Button>
+            <Button
+            style={{
+              background: "#F93866",
+              padding: ".5em 3em",
+              marginTop: "4em",
+              fontWeight: 900,
+            }}
+            variant="contained"
+          >
+            Далее
+          </Button>
+          </div>
+        </Paper> */}
+
+        {/* <Paper elevation={3} className={classes.profileContainer}>
+          <img src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album" alt="Логотип министерства Удмуртии" />
+          <h1 className={classes.questionNumber}>Вопрос 4</h1>
+          <p className={classes.questionText}>Ваше имущество:</p>
+          <div className={classes.inputContainer}>
+              <p className={classes.lightText}>Количество квартир</p>
+              <input type="text" className={classes.inputField} />
+          </div>
+          <div className={classes.inputContainer}>
+              <p className={classes.lightText}>Количество домов</p>
+              <input type="text" className={classes.inputField} />
+          </div>
+          <div className={classes.inputContainer}>
+              <p className={classes.lightText}>Количество машин</p>
+              <input type="text" className={classes.inputField} />
+          </div>
+          
+          <div>
+            <Button
+              style={{
+                background: "#3D348B",
+                padding: ".5em 3em",
+                marginTop: "4em",
+                fontWeight: 900,
+                marginRight: "2em"
+              }}
+              variant="contained"
+            >
+              Назад
+            </Button>
+            <Button
+            style={{
+              background: "#F93866",
+              padding: ".5em 3em",
+              marginTop: "4em",
+              fontWeight: 900,
+            }}
+            variant="contained"
+          >
+            Далее
+          </Button>
+          </div>
+        </Paper> */}
+
+          {/* <Paper elevation={3} className={classes.profileContainer}>
+            <img src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album" alt="Логотип министерства Удмуртии" />
+            <h1 className={classes.questionNumber}>Вопрос 5</h1>
+            <p className={classes.questionText}>Ваше имущество:</p>
+            <div className={classes.inputContainer}>
+                <p className={classes.lightText}>Количество квартир</p>
+                <input type="text" className={classes.inputField} />
+            </div>
+            <div className={classes.inputContainer}>
+                <p className={classes.lightText}>Количество домов</p>
+                <input type="text" className={classes.inputField} />
+            </div>
+            <div className={classes.inputContainer}>
+                <p className={classes.lightText}>Количество машин</p>
+                <input type="text" className={classes.inputField} />
+            </div>
+            
+            <div>
+              <Button
+                style={{
+                  background: "#3D348B",
+                  padding: ".5em 3em",
+                  marginTop: "4em",
+                  fontWeight: 900,
+                  marginRight: "2em"
+                }}
+                variant="contained"
+              >
+                Назад
+              </Button>
+              <Button
               style={{
                 background: "#F93866",
                 padding: ".5em 3em",
                 marginTop: "4em",
                 fontWeight: 900,
               }}
-              onClick={handleClick1}
               variant="contained"
             >
               Далее
             </Button>
-          </Paper>
-        )}
-        {next && (
-          <Paper elevation={3} className={classes.profileContainer}>
-            <img
-              src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album"
-              alt="Логотип министерства Удмуртии"
-            />
-            <h1 className={classes.questionNumber}>Вопрос 2</h1>
-            <p className={classes.questionText}>Ваше семейное положение:</p>
+            </div>
+          </Paper> */}
+
+          {/* <Paper elevation={3} className={classes.profileContainer}>
+            <img src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album" alt="Логотип министерства Удмуртии" />
+            <h1 className={classes.questionNumber}>Вопрос 6</h1>
+            <p className={classes.questionText}>Группа инвалидности:</p>
             <Autocomplete
               disablePortal
               id="combo-box-demo"
-              options={married}
+              options={invalidGroups}
               sx={{ width: 300 }}
               renderInput={(params) => <TextField {...params} label="" />}
             />
-            <Button
+            
+            <div>
+              <Button
+                style={{
+                  background: "#3D348B",
+                  padding: ".5em 3em",
+                  marginTop: "4em",
+                  fontWeight: 900,
+                  marginRight: "2em"
+                }}
+                variant="contained"
+              >
+                Назад
+              </Button>
+              <Button
               style={{
                 background: "#F93866",
                 padding: ".5em 3em",
                 marginTop: "4em",
                 fontWeight: 900,
               }}
-              onClick={handleClick1}
               variant="contained"
             >
               Далее
             </Button>
+            </div>
+          </Paper> */}
+
+          <Paper elevation={3} className={classes.profileContainer}>
+            <img src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album" alt="Логотип министерства Удмуртии" />
+            <h1 className={classes.questionNumber}>Вопрос 7</h1>
+            <p className={classes.questionText}>Хронические заболевания:</p>
+            <Autocomplete
+              disablePortal
+              id="combo-box-demo"
+              options={illnesses}
+              sx={{ width: 300 }}
+              renderInput={(params) => <TextField {...params} label="" />}
+            />
+            
+            <div>
+              <Button
+                style={{
+                  background: "#3D348B",
+                  padding: ".5em 3em",
+                  marginTop: "4em",
+                  fontWeight: 900,
+                  marginRight: "2em"
+                }}
+                variant="contained"
+              >
+                Назад
+              </Button>
+              <Button
+              style={{
+                background: "#F93866",
+                padding: ".5em 3em",
+                marginTop: "4em",
+                fontWeight: 900,
+              }}
+              variant="contained"
+            >
+              Далее
+            </Button>
+            </div>
           </Paper>
-        )}
-      </section>
+        </section>
     </div>
   );
 }

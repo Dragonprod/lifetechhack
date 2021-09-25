@@ -5,6 +5,7 @@ from pydantic import BaseModel
 class UserBase(BaseModel):
     id: int
     email: str
+    is_admin: bool
 
     class Config:
         orm_mode = True
@@ -17,13 +18,14 @@ class UserInDb(UserBase):
 class UserInLogin(BaseModel):
     email: str
     password: str
+    is_admin: bool
 
 
 class UserInCreate(UserInLogin):
     email: str
 
 
-class UserInResponse(UserBase):
+class UserInResponse(BaseModel):
     token: str
 
 

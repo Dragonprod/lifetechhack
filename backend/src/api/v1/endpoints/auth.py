@@ -23,7 +23,7 @@ router = APIRouter()
 async def register_user(user: UserInCreate = Body(...), db: Session = Depends(get_db)):
     dbuser = await create_user(user, db)
     if dbuser is not None:
-        token = create_access_token(dbuser.id, JWT_SECRET)
+        token = create_access_token(dbuser, JWT_SECRET)
         return UserInResponse(
             id=dbuser.id,
             email=dbuser.email,
@@ -31,7 +31,7 @@ async def register_user(user: UserInCreate = Body(...), db: Session = Depends(ge
         )
     else:
         return HTTPException(HTTP_400_BAD_REQUEST)
-        
+
 
 @router.post(
     "/users/login",
@@ -47,7 +47,7 @@ async def login_user(user: UserInLogin = Body(...), db: Session = Depends(get_db
     if not verify_password(user.password, user_finded.password):
         return HTTPException(HTTP_400_BAD_REQUEST)
 
-    token = create_access_token(user_finded.id, JWT_SECRET)
+    token = create_access_token(user_finded, JWT_SECRET)
 
     return UserInResponse(
         id=user_finded.id,

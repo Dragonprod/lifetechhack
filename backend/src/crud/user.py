@@ -8,11 +8,12 @@ from fastapi import Depends
 async def create_user(user, db: Session = Depends(get_db)):
     if db.query(User).filter(User.email == user.email).first() == None:
         user.password = get_password_hash(user.password)
-        new_user = User(email=user.email, password=user.password)
+        new_user = User(email=user.email, password=user.password,
+                        is_admin=user.is_admin)
         db.add(new_user)
         db.commit()
         # TODO: Inser data to DataBase
-        return UserBase(id=new_user.id, email=user.email)
+        return UserBase(id=new_user.id, email=user.email, is_admin=user.is_admin)
     else:
         return None
 
