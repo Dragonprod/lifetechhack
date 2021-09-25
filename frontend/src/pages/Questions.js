@@ -21,32 +21,7 @@ import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
-<<<<<<< HEAD
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
-
-const married = [
-  { label: 'Женат'},
-  { label: 'Не женат'},
-];
-
-const invalidGroups = [
-  { label: 'Нет'},
-  { label: 'Первая группа'},
-  { label: 'Вторая группа'},
-  { label: 'Третья группа'},
-];
-const illnesses = [
-  { label: 'Нет'},
-  { label: 'Нарушение осанки'},
-  { label: 'Астма'},
-  { label: 'Поллиноз'},
-  { label: 'Гипертензия'},
-];
-
-=======
 const married = [{ label: "Женат" }, { label: "Не женат" }];
->>>>>>> 59ec7d18efc5109c627edb6e5e69415018a31c33
 
 const useStyles = makeStyles((theme) => ({
   mainContent: {
