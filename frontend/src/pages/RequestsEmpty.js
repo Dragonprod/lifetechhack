@@ -2,7 +2,7 @@ import React from "react";
 import { push } from "connected-react-router";
 import { connect } from "react-redux";
 import { setFormData } from "../store/dataStorage/actions";
-import { makeStyles, useTheme, withStyles } from '@material-ui/styles';
+import { makeStyles, useTheme, withStyles } from "@material-ui/styles";
 import Button from "@mui/material/Button";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -14,7 +14,7 @@ import StorageIcon from "@mui/icons-material/Storage";
 import QuestionAnswerRoundedIcon from "@mui/icons-material/QuestionAnswerRounded";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import Paper from "@mui/material/Paper";
 import Avatar from "@mui/material/Avatar";
 
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
-    padding: "2em"
+    padding: "2em",
   },
 
   mainGrid: {
@@ -98,7 +98,7 @@ const useStyles = makeStyles((theme) => ({
 
 function RequestsEmpty(props) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(false);
   const theme = useTheme();
 
   const handleClick = () => {
@@ -111,14 +111,25 @@ function RequestsEmpty(props) {
         <h1 style={{ gridColumn: "1" }}>Мои обращения</h1>
         <ul className={classes.headerItemsList}>
           <li className={classes.li}>
-            <NotificationsActiveIcon fontSize="large" onClick={() => {console.log('NotifyClick')}}/>
+            <NotificationsActiveIcon
+              fontSize="large"
+              onClick={() => {
+                console.log("NotifyClick");
+              }}
+            />
           </li>
           <li className={classes.li}>
-              <Avatar sx={{ width: 48, height: 48 }} onClick={() => {console.log('Avatar Click')}}>IV</Avatar>
+            <Avatar
+              sx={{ width: 48, height: 48 }}
+              onClick={() => {
+                console.log("Avatar Click");
+              }}
+              src="https://mui.com/static/images/avatar/1.jpg"
+            ></Avatar>
           </li>
         </ul>
       </header>
-     
+
       <nav className={classes.sidebar}>
         <div className={classes.logoContainer}>
           <img
@@ -135,7 +146,7 @@ function RequestsEmpty(props) {
           component="nav"
           aria-labelledby="nested-list-subheader"
         >
-          <ListItemButton onClick={() => props.push('/profile')}>
+          <ListItemButton onClick={() => props.push("/profile")}>
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>
@@ -151,7 +162,10 @@ function RequestsEmpty(props) {
           </ListItemButton>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              <ListItemButton sx={{ pl: 2 }} onClick={() => props.push('/profile/info')}>
+              <ListItemButton
+                sx={{ pl: 2 }}
+                onClick={() => props.push("/profile/info")}
+              >
                 <ListItemText style={{ marginLeft: 24 }} primary="Мои данные" />
               </ListItemButton>
 
@@ -172,7 +186,7 @@ function RequestsEmpty(props) {
             </List>
           </Collapse>
 
-          <ListItemButton onClick={() => props.push('/profile/requests')}>
+          <ListItemButton onClick={() => props.push("/profile/requests")}>
             <ListItemIcon>
               <QuestionAnswerRoundedIcon />
             </ListItemIcon>
@@ -182,12 +196,20 @@ function RequestsEmpty(props) {
       </nav>
       <section className={classes.mainContent}>
         <Paper elevation={3} className={classes.profileContainer}>
-          <p className={classes.warningText} style={{marginBottom: 0}}>У Вас нет активных заявок</p>
-          <p className={classes.warningText}>Создайте заявку, чтобы получить помощь</p>
+          <p className={classes.warningText} style={{ marginBottom: 0 }}>
+            У Вас нет активных заявок
+          </p>
+          <p className={classes.warningText}>
+            Создайте заявку, чтобы получить помощь
+          </p>
           <Button
-            style={{ background: "#F93866", padding: ".5em 5em", fontWeight: 900}}
+            style={{
+              background: "#F93866",
+              padding: ".5em 5em",
+              fontWeight: 900,
+            }}
             variant="contained"
-            onClick={() => props.push('/profile/questions')}
+            onClick={() => props.push("/profile/questions")}
           >
             Создать заявку
           </Button>
@@ -206,4 +228,3 @@ export default connect(
   null,
   mapDispatchToProps
 )(withStyles(useStyles)(RequestsEmpty));
-

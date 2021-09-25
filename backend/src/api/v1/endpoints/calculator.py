@@ -16,18 +16,19 @@ router = APIRouter()
 @router.post(
     "/calc/start",
     response_model=QuestionBaseResponse,
-    tags=["calculation"],
-    status_code=HTTP_200_OK,
+    tags=["Calculation"],
+    status_code=HTTP_201_CREATED,
 )
 async def start_calc(user_id: int, db: Session = Depends(get_db)):
     user = db.query(User).filter(User.id == user_id).first()
     if user is None:
         return HTTPException(HTTP_404_NOT_FOUND)
 
-    steps = [1, 2, 3, 4, 5, 6, 7]
+    steps = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     report = Report(user_id=user.id)
     db.add(report)
-    report.rubrics.extend([Ans(step=step, ans="") for step in steps])
+    report.anses.extend([Ans(step=step, ans="") for step in steps])
+    db.commit()
 
     return QuestionBaseResponse(user_id=user_id, report_id=report.id, step=1)
 
@@ -39,9 +40,16 @@ async def start_calc(user_id: int, db: Session = Depends(get_db)):
     status_code=HTTP_200_OK,
 )
 async def update(report_id: int, ans: str, step: int, db: Session = Depends(get_db)):
-    ans = db.query(Ans).filter(Ans.report_id ==
-                               report_id, Ans.step == step).first()
-    return QuestionBaseResponse(user_id=report.user_id, report_id=report.id, step=step+1)
+    ans_obj = db.query(Ans).filter(
+        Ans.report_id == report_id, Ans.step == step).first()
+    ans_obj.ans = ans
+    if step == 2:
+        if ans != 'Женат':
+            step += 1
+    step += 1
+
+    db.commit()
+    return QuestionBaseResponse(report_id=ans_obj.report_id, step=step)
 
 
 @router.post(
@@ -54,24 +62,33 @@ async def stop(report_id: int, db: Session = Depends(get_db)):
     report = db.query(Report).filter(Report.id == report_id).first()
     if report is None:
         return HTTPException(HTTP_404_NOT_FOUND)
-    anses = report.anses
-    persons = 1
-    disease = ""
-    income = 0
-    q = 0
-    income += int(anses[q].ans)
-    q += 1
-    if anses[q].ans == "Да":
-        q += 1
-        persons += 1
-        income += int(anses[q].ans)
-    q += 1
-    anses[q].ans  # Имущество
-    q += 1
-    if anses[q].ans is not None:
-        disease = anses[q].ans
-    q += 1
-    persons += anses[q].ans
-    report.complited = True
+    poor = False
+    anses = report.anses.all()
+    income = int(anses[0].ans)
+    person = 1
+    help = ""
+    try:
+        income = int(anses[2].ans) + int(anses[0].ans)
+        person += 1
+        person += int(anses[3])
+    except:
+        None
 
-    return CalcModel(id=report_id, poor=True,  disease=disease)
+    owners = 0
+    try:
+        owners += int(anses[4].ans) + int(anses[5].ans) + int(anses[6].ans)
+    except:
+        None
+
+    if anses[7] != "Нет" or anses[8] != "Нет":
+        # help = anses[7] if anses[7] != "Нет" else anses[8]
+        help = True
+    else:
+        help = False
+
+    if owners >= 2 or income/person > 10465:
+        poor = False
+
+    report.complited = True
+    db.commit()
+    return CalcModel(id=report_id, poor=poor, help=help)

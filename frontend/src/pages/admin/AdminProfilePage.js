@@ -165,7 +165,7 @@ function AdminProfilePage(props) {
             <NotificationsActiveIcon fontSize="large" onClick={() => {console.log('NotifyClick')}}/>
           </li>
           <li className={classes.li}>
-              <Avatar sx={{ width: 48, height: 48 }} onClick={() => {console.log('Avatar Click')}}>IV</Avatar>
+          <Avatar sx={{ width: 48, height: 48 }} onClick={() => {console.log('Avatar Click')}} src='https://mui.com/static/images/avatar/1.jpg'></Avatar>
           </li>
         </ul>
       </header>
