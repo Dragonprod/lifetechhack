@@ -3,7 +3,10 @@ from sqlalchemy.orm import session
 from database.database import *
 import random
 import datetime
+import logging
 
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 def test_region():
     list_regions = [
@@ -44,6 +47,7 @@ def test_region():
             region.debts.append(OverdueDebtRegion(
                 date=date, count=get_random(20000, 70000)))
 
+        logger.info(f'Adding region - {region}...')
         db.commit()
 
     district_list = ["Алнашский муниципальный район", "Балезинский муниципальный район",
@@ -63,7 +67,8 @@ def test_region():
                 date=date, count=get_random(20000, 70000)))
             distirict.debts.append(OverdueDebtDistrict(
                 date=date, count=get_random(20000, 70000)))
-
+        
+        logger.info(f'Adding distirict - {distirict}...')
         db.commit()
 
     city_list = ['Ижевск', 'Воткинс', 'Глазов', 'Можга', 'Сарапул']
@@ -106,6 +111,7 @@ def test_region():
                          'деятельность в области здравоохранения и социальных услуг',
                          'деятельность в области культуры, спорта, организации досуга и развлечений',
                          'предоставление прочих видов услуг']
+    logger.info(f'Adding city - {city}...')
     db.commit()
 
     for organization in organization_list:
@@ -123,6 +129,7 @@ def test_region():
             organization.debts.append(OverdueDebtOrganization(
                 date=date, count=get_random(20000, 200000)))
 
+        logger.info(f'Adding organization - {organization}...')
         db.commit()
 
     service_list = [('Молоко', 'л'), ('Сыр', 'кг'), ('Хлеб', 'кг'), ('Колбаса', 'кг'), ('Арбуз', 'кг'),
@@ -135,6 +142,7 @@ def test_region():
                 year += 1
             db.add(ServicesOrProductsOfThePrice(
                 name=service[0], date=date, price=get_random(0, 200), unit=service[1]))
+            logger.info(f'Adding service - {service}...')
             db.commit()
     db.close()
 
