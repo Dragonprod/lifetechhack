@@ -1,8 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, String, Integer, Date, ForeignKey, Float
+from sqlalchemy import Column, String, Integer, Date, ForeignKey, Float, Boolean
 import os
+
 
 engine_sql_lite = create_engine("sqlite:///database.db", connect_args={
     "check_same_thread": False})
@@ -18,12 +19,29 @@ def get_db():
         db.close()
 
 
+class Report(Base):
+    __tablename__ = "report"
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    complited = Column(Boolean, default=False)
+    anses = relationship('Ans', lazy='dynamic')
+
+
+class Ans(Base):
+    __tablename__ = "ans"
+    id = Column(Integer,  primary_key=True)
+    report_id = Column(Integer, ForeignKey('report.id'))
+    step = Column(Integer)
+    ans = Column(String(128))
+
+
 class User(Base):
     __tablename__ = "user"
     id = Column(Integer, primary_key=True)
     email = Column(String(128))
     password = Column(String(256))
     profile = relationship('UserDocument', lazy='joined')
+    reports = relationship('Report', lazy='dynamic')
 
 
 class UserDocument(Base):

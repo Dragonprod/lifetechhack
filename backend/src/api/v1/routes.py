@@ -8,6 +8,7 @@ from .endpoints.population import router as population_router
 from .endpoints.services import router as service_router
 from .endpoints.auth import router as auth_router
 from .endpoints.profile import router as profile_router
+from .endpoints.calculator import router as calculator_router
 
 
 router = APIRouter()
@@ -18,5 +19,6 @@ router.include_router(organization_router)
 router.include_router(population_router)
 router.include_router(service_router)
 router.include_router(auth_router)
+router.include_router(calculator_router)
 router.include_router(profile_router)
 
