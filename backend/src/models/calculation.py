@@ -20,7 +20,6 @@ class QuestionInHealth(QuestionBase):
 
 
 class QuestionBaseResponse(BaseModel):
-    user_id: int
     step: int
     report_id: int
 
