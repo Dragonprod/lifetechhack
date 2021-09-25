@@ -45,6 +45,11 @@ class Organization(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(256))
 
+    # Заработные платы
+    wages = relationship('WagesOrganization', lazy='dynamic')
+    incomes = relationship('IncomeOrganization', lazy='dynamic')
+    losses = relationship('LossOrganization', lazy='dynamic')
+
 
 class AverageMonthlyAccruedSalaryOfEmployees(Base):
     """Среднемесячная начисленная заработная плата работников организаций, не относящихся к субъектам 
@@ -208,7 +213,7 @@ class OverdueDebtCity(Base):
 
 
 class OverdueDebtDistrict(Base):
-    """Просроченная задолженность по заработной плате городов"""
+    """Просроченная задолженность по заработной плате областей"""
     __tablename__ = "OverdueDebtDistrict"
     id = Column(Integer, primary_key=True)
     region_id = Column(Integer, ForeignKey('district.id'))
