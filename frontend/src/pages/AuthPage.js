@@ -93,6 +93,8 @@ function AuthProfilePage() {
           <div>
               <button className={classes.loginBtn} style={{margin: "3em 0 0"}}>Войти</button>
               <Link to="/profile">Перейти в кабинет пользователя</Link>
+              <br/>
+              <Link to="/profile/requests">Перейти в requests</Link>
           </div>
           
         </div>

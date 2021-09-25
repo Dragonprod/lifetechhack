@@ -26,12 +26,14 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   warningText: {
-    fontSize: "48px",
+    fontSize: "40px",
   },
   profileContainer: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    flexDirection: "column",
+    padding: "2em"
   },
 
   mainGrid: {
@@ -180,16 +182,14 @@ function RequestsEmpty(props) {
       </nav>
       <section className={classes.mainContent}>
         <Paper elevation={3} className={classes.profileContainer}>
-          <p className={classes.warningText}>У Вас нет активных заявок</p>
-          <p className={classes.warningText}>
-            Создайте заявку, чтобы получить помощь
-          </p>
+          <p className={classes.warningText} style={{marginBottom: 0}}>У Вас нет активных заявок</p>
+          <p className={classes.warningText}>Создайте заявку, чтобы получить помощь</p>
           <Button
-            style={{ background: "#F93866", padding: ".5em 3em" }}
+            style={{ background: "#F93866", padding: ".5em 5em", fontWeight: 900}}
             variant="contained"
             onClick={() => props.push('/profile/questions')}
           >
-            Contained
+            Создать заявку
           </Button>
         </Paper>
       </section>

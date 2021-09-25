@@ -18,6 +18,15 @@ import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import Paper from "@mui/material/Paper";
 import Avatar from "@mui/material/Avatar";
 
+
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+
+const married = [
+  { label: 'Женат'},
+  { label: 'Не женат'},]
+  
+
 const useStyles = makeStyles((theme) => ({
   mainContent: {
     background: "#F8F8FA",
@@ -36,6 +45,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    flexDirection: "column",
+    padding: "2em"
   },
   inputField: {
     background: "#E0E2DB",
@@ -191,8 +202,8 @@ function Questions(props) {
         </List>
       </nav>
       <section className={classes.mainContent}>
-        <Paper elevation={3} className={classes.profileContainer}>
-          <img src="" alt="Логотип министерства Удмуртии" />
+        {/* <Paper elevation={3} className={classes.profileContainer}>
+          <img src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album" alt="Логотип министерства Удмуртии" />
           <h1 className={classes.questionNumber}>Вопрос 1</h1>
           <p className={classes.questionText}>Ваш ежемесячный доход:</p>
           <input type="text" className={classes.inputField} />
@@ -200,13 +211,27 @@ function Questions(props) {
             style={{
               background: "#F93866",
               padding: ".5em 3em",
+              marginTop: "4em",
               fontWeight: 900,
             }}
             variant="contained"
           >
             Войти
           </Button>
+        </Paper> */}
+        <Paper elevation={3} className={classes.profileContainer}>
+          <img src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album" alt="Логотип министерства Удмуртии" />
+          <h1 className={classes.questionNumber}>Вопрос 2</h1>
+          <p className={classes.questionText}>Ваше семейное положение:</p>
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={married}
+            sx={{ width: 300 }}
+            renderInput={(params) => <TextField {...params} label="" />}
+          />
         </Paper>
+      
       </section>
     </div>
   );
