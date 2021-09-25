@@ -119,9 +119,9 @@ class IncomeRegion(Base):
     count = Column(Integer)
 
 
-class IncomeDistricts(Base):
+class IncomeDistrict(Base):
     """Доходы области"""
-    __tablename__ = "IncomeDistricts"
+    __tablename__ = "IncomeDistrict"
     id = Column(Integer, primary_key=True)
     district_id = Column(Integer, ForeignKey('district.id'))
     date = Column(Date)
@@ -171,9 +171,9 @@ class LossPopulation(Base):
     count = Column(Integer)
 
 
-class LossDistricts(Base):
+class LossDistrict(Base):
     """Убытки областей"""
-    __tablename__ = "LossDistricts"
+    __tablename__ = "LossDistrict"
     id = Column(Integer, primary_key=True)
     district_id = Column(Integer, ForeignKey('district.id'))
     date = Column(Date)
@@ -193,7 +193,7 @@ class LossCity(Base):
     """Убытки городов"""
     __tablename__ = "LossCity"
     id = Column(Integer, primary_key=True)
-    region_id = Column(Integer, ForeignKey('region.id'))
+    city_id = Column(Integer, ForeignKey('city.id'))
     date = Column(Date)
     count = Column(Integer)
 

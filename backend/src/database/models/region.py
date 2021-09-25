@@ -12,10 +12,10 @@ class RegionModel(BaseModel):
 
 
 class BaseRelationRegionModel(BaseModel):
-    id = int
-    region_id = int
-    count = int
-    date = date
+    id: int
+    region_id: int
+    count: int
+    date: date
 
     class Config:
         orm_mode = True

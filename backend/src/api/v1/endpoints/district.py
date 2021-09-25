@@ -1,4 +1,4 @@
-from ....database.database import District, IncomeDistricts, LossDistricts, OverdueDebtDistrict, get_db, Session
+from ....database.database import District, OverdueDebtDistrict, get_db, Session
 from ....database.models.district import DistrictModel, BaseRelationDistrictModel
 from fastapi.responses import ORJSONResponse
 from fastapi import APIRouter
