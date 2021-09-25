@@ -210,7 +210,7 @@ function UserProfilePage(props) {
         <Paper elevation={3} className={classes.profileContainer}>
           <div className={classes.nameAndPhotoContainer}>
             <Avatar sx={{ width: 100, height: 100 }}>IV</Avatar>
-            <h2 style={{ fontSize: "36px" }}>Иванов Иван Иванович</h2>
+            <h2 style={{ fontSize: "36px", marginLeft: "1.5em" }}>Иванов Иван Иванович</h2>
           </div>
           <div className={classes.profileForm}>
             <Paper
