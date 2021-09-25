@@ -12,11 +12,11 @@ class CityModel(BaseModel):
 
 
 class BaseRelationCityModel(BaseModel):
-    id = int
-    city_id = int
+    id: int
+    city_id: int
     # Очётный месяц
-    count = int
-    date = date
+    count: int
+    date: date
 
     class Config:
         orm_mode = True
