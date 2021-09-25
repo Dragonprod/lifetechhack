@@ -21,15 +21,7 @@ import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
-<<<<<<< HEAD
-
-const married = [
-  { label: 'Женат'},
-  { label: 'Не женат'},
-];
-=======
 const married = [{ label: "Женат" }, { label: "Не женат" }];
->>>>>>> 0b904f3d31b602702165adc5a83d2d4ca4e50eda
 
 const invalidGroups = [
   { label: "Нет" },
@@ -341,10 +333,6 @@ function Questions(props) {
           </Paper>
         )}
 
-<<<<<<< HEAD
-          {/* <Paper elevation={3} className={classes.profileContainer}>
-            <img src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album" alt="Логотип министерства Удмуртии" />
-=======
         {step3 &&
         (
           <Paper elevation={3} className={classes.profileContainer}>
@@ -444,7 +432,6 @@ function Questions(props) {
               src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album"
               alt="Логотип министерства Удмуртии"
             />
->>>>>>> 0b904f3d31b602702165adc5a83d2d4ca4e50eda
             <h1 className={classes.questionNumber}>Вопрос 6</h1>
             <p className={classes.questionText}>Группа инвалидности:</p>
             <Autocomplete
