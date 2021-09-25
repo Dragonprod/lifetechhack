@@ -37,7 +37,7 @@ class UserInResponse(UserBase):
     token: str
 
 
-class UserInDocuments(UserBase): 
+class UserInDocuments(UserBase):
     passportId: str
     passportGiveDate: str
     passportCode: str
@@ -45,20 +45,19 @@ class UserInDocuments(UserBase):
     passportBirthCity: str
 
     snilsId: str
-    
+
     regStreet: str
     regHouse: str
     regFlat: int
 
-    
-# class UserInFamily(UserBase): 
-#     raise NotImplementedError
-    
 
-# class UserInProperty(UserBase): 
+# class UserInFamily(UserBase):
 #     raise NotImplementedError
-    
 
-# class UserInWork(UserBase): 
+
+# class UserInProperty(UserBase):
 #     raise NotImplementedError
-    
+
+
+# class UserInWork(UserBase):
+#     raise NotImplementedError
