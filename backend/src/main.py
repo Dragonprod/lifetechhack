@@ -35,16 +35,6 @@ def login(auth_details: models.schemas.AuthDetails):
     return {'token': token}
 
 
-@app.get('/unprotected')
-def unprotected():
-    return {'hello': 'world'}
-
-
-@app.get('/protected')
-def protected(username=Depends(auth_handler.auth_wrapper)):
-    return {'name': username}
-
-
 # app.add_event_handler("startup", )
 # app.add_event_handler("shutdown", )
 
