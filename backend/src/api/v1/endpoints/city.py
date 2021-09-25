@@ -5,17 +5,21 @@ from fastapi import APIRouter
 from fastapi import Depends
 
 
-router = APIRouter()
+router = APIRouter(
+    prefix="/city",
+    tags=["City"],
+    responses={404: {"description": "Not found"}},
+)
 
 
-@router.post("/city/create")
-async def create(name: str, db: Session = Depends(get_db), tags=["Region"], response_model=CityModel, response_class=ORJSONResponse):
+@router.post("/create", response_model=CityModel, response_class=ORJSONResponse)
+async def create(name: str, db: Session = Depends(get_db)):
     city = City(name=name)
     db.add(city)
     db.commit()
     return city
 
 
-@router.get("/city/{id}")
-async def create(id: int, db: Session = Depends(get_db), tags=["Region"], response_model=CityModel, response_class=ORJSONResponse):
+@router.get("/{id}", response_model=CityModel, response_class=ORJSONResponse)
+async def get(id: int,  db: Session = Depends(get_db),):
     return db.query(City).filter(City.id == id).first()
