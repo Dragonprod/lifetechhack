@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 
+# from .endpoints.auth import router as auth_router
 from .endpoints.city import router as city_router
 from .endpoints.district import router as district_router
 from .endpoints.region import router as region_router
@@ -9,6 +10,7 @@ from .endpoints.services import router as service_router
 
 
 router = APIRouter()
+#router.include_router(auth_router)
 router.include_router(city_router)
 router.include_router(region_router)
 router.include_router(district_router)

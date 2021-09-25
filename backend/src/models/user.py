@@ -10,7 +10,7 @@ class UserBase(BaseModel):
     role_id: int
     name: str
     surname: str
-    patronymic: str
+    patronymic: Optional[str] = None
 
 
 class UserInDb(UserBase):
