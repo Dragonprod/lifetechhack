@@ -19,5 +19,10 @@ class QuestionInHealth(QuestionBase):
     pregnancy: Optional[str] = None
 
 
-class QuestionBaseResponse(QuestionBase):
-    result: int
+class QuestionBaseResponse(BaseModel):
+    user_id: int
+    step: int
+    report_id: int
+
+    class Config:
+        orm_mode = True
