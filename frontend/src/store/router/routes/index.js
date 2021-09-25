@@ -13,7 +13,7 @@ const routes = (
       <Route exact path="/" component={LandingPage} />
       <Route path="/login" component={AuthPage} />
       <Route path="/profile" component={UserProfilePage} />
-      <Route path="/map" component={HeatMapPage} />
+      <Route path="/profile/map" component={HeatMapPage} />
   </div>
 )
 
