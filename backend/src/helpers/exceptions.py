@@ -1,4 +1,4 @@
-from pydantic import BaseModel
-
-class EntityDoesNotExist(BaseModel):
-    raise NotADirectoryError
+class EntityDoesNotExist(Exception):
+    def __init__(self, message="User not found!"):
+        self.message = message
+        super().__init__(self.message)

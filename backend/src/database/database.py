@@ -24,12 +24,20 @@ class Region(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(128))
 
+    incomes = relationship('IncomeRegion', lazy='dynamic')
+    losses = relationship('LossRegion', lazy='dynamic')
+    debts = relationship('OverdueDebtRegion', lazy='dynamic')
+
 
 class District(Base):
     """Районы"""
     __tablename__ = "district"
     id = Column(Integer, primary_key=True)
     name = Column(String(128))
+
+    incomes = relationship('IncomeDistrict', lazy='dynamic')
+    losses = relationship('LossDistrict', lazy='dynamic')
+    debts = relationship('OverdueDebtDistrict', lazy='dynamic')
 
 
 class City(Base):
@@ -38,12 +46,22 @@ class City(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(128))
 
+    incomes = relationship('IncomeCity', lazy='dynamic')
+    losses = relationship('LossCity', lazy='dynamic')
+    debts = relationship('OverdueDebtCity', lazy='dynamic')
+
 
 class Organization(Base):
     """Организации"""
     __tablename__ = "organization"
     id = Column(Integer, primary_key=True)
     name = Column(String(256))
+
+    # Заработные платы
+    wages = relationship('WagesOrganization', lazy='dynamic')
+    incomes = relationship('IncomeOrganization', lazy='dynamic')
+    losses = relationship('LossOrganization', lazy='dynamic')
+    debts = relationship('OverdueDebtOrganization', lazy='dynamic')
 
 
 class AverageMonthlyAccruedSalaryOfEmployees(Base):
@@ -208,7 +226,7 @@ class OverdueDebtCity(Base):
 
 
 class OverdueDebtDistrict(Base):
-    """Просроченная задолженность по заработной плате городов"""
+    """Просроченная задолженность по заработной плате областей"""
     __tablename__ = "OverdueDebtDistrict"
     id = Column(Integer, primary_key=True)
     region_id = Column(Integer, ForeignKey('district.id'))
