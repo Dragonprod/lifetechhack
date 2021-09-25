@@ -1,25 +1,23 @@
-import React from "react";
-import LandingPage from "./pages/LandingPage";
-import UserProfilePage from "./pages/user/UserProfilePage";
-import CalculatorPage from "./pages/user/CalculatorPage";
-import AdminProfilePage from "./pages/admin/AdminProfilePage";
 import "./App.css";
-import { Switch, Route } from "react-router-dom";
-import AuthProfilePage from "./pages/AuthProfilePage";
-import HeatMapPage from "./pages/admin/HeatMapPage"
-function App() {
+import React from "react";
+import { ConnectedRouter } from "connected-react-router";
+import { withStyles } from '@material-ui/styles';
+import { makeStyles, useTheme } from '@material-ui/styles';
+
+import routes from './store/router/routes'
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+  },
+}));
+
+function App(props) {
   return (
-    <main>
-      <Switch>
-        <Route exact path="/" component={LandingPage} />
-        {/* <Route path="/admin" component={Roster} />
-        <Route path="/login" component={LoginPage}> */}
-        <Route path="/profile" component={UserProfilePage} />
-        <Route path="/auth" component={AuthProfilePage} />
-        <Route path="/map" component={HeatMapPage} />
-      </Switch>
-    </main>
+    <ConnectedRouter history={props.history}>
+    { routes }
+    </ConnectedRouter>
   );
 }
 
-export default App;
+export default withStyles(useStyles)(App);
