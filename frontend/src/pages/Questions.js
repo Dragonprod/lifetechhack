@@ -21,7 +21,6 @@ import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
-<<<<<<< HEAD
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
@@ -44,9 +43,6 @@ const illnesses = [
   { label: 'Гипертензия'},
 ];
 
-=======
-const married = [{ label: "Женат" }, { label: "Не женат" }];
->>>>>>> 59ec7d18efc5109c627edb6e5e69415018a31c33
 
 const useStyles = makeStyles((theme) => ({
   mainContent: {
