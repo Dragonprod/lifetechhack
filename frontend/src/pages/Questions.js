@@ -148,6 +148,8 @@ function Questions(props) {
 
   const handleStepNext = () => {
     setStep((prevStep) => prevStep + 1);
+    if(step == 7) 
+      this.props.push('/profile/requests')
   };
 
   const handleStepBack = () => {
