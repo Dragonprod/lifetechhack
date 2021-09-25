@@ -221,7 +221,7 @@ function AdminProfilePage(props) {
         <Paper elevation={3} style={{display: "flex", padding: "1.5em"}}>
           <img src="https://sun9-24.userapi.com/impg/dhZHq7u-0tBfT5-YqIVgfp1nPE-mQFOjduK9iQ/S8flo6ydux0.jpg?size=500x349&quality=96&sign=30f3f2ce424b25509866efa8de790e4e&type=album" alt="Тепловая карта" style={{marginRight: "2em"}}/>
           <div className={classes.commonStatsGrid}>
-             <div className={classes.statContainer} style={{}}>
+            <div className={classes.statContainer} style={{}}>
               <svg className={classes.statsIcon} width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="55" height="55" rx="10" fill="#FFF4DE"/>
                 <g clip-path="url(#clip0)">
@@ -243,50 +243,39 @@ function AdminProfilePage(props) {
                 <h3 className={classes.statsTitle}>Средний доход</h3>
                 <h2 className={classes.statsNumber}>18654</h2>
               </div>
-             </div>
-             <div className={classes.statContainer} style={{}}>
+            </div>
+            <div className={classes.statContainer} style={{}}>
+            <svg className={classes.statsIcon} width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="55" height="55" rx="10" fill="#FFF4DE"/>
+              <g clip-path="url(#clip0)">
+              <path d="M31.3334 34.202H40.6364V37.8985H31.3334V34.202Z" fill="#FFB929"/>
+              <path d="M31.3334 39.7468H40.6364V43.4434H31.3334V39.7468Z" fill="#FFB929"/>
+              <path d="M31.3334 28.6571H40.6364V32.3537H31.3334V28.6571Z" fill="#FFB929"/>
+              <path d="M16.4976 30.6011L15.2152 30.5875L15.1349 28.7437C21.9955 28.075 28.1587 24.2638 31.8128 18.4816L29.5909 17.4447L37.9434 12.3654L39.4216 22.0301L36.8496 20.8307C35.0942 23.4632 32.2622 26.6888 28.1866 28.4332C24 30.2247 19.5192 30.6011 16.4976 30.6011Z" fill="#FFB929"/>
+              <path d="M20.6265 43.4434H11.3235V39.7469H20.6265V43.4434Z" fill="#FFB929"/>
+              <path d="M22.4749 34.202H31.7163V37.8986H22.4749V34.202Z" fill="#FFB929"/>
+              <path d="M22.4749 39.7469H31.7163V43.4434H22.4749V39.7469Z" fill="#FFB929"/>
+              </g>
+              <defs>
+              <clipPath id="clip0">
+              <rect width="31.5441" height="31.5441" fill="white" transform="translate(11.3235 12.1324)"/>
+              </clipPath>
+              </defs>
+            </svg>
+            <div>
+              <h3 className={classes.statsTitle}>Средний доход</h3>
+              <h2 className={classes.statsNumber}>18654</h2>
+            </div>
+            </div>
+            <div className={classes.statContainer} style={{}}>
               <svg className={classes.statsIcon} width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="55" height="55" rx="10" fill="#FFF4DE"/>
-                <g clip-path="url(#clip0)">
-                <path d="M31.3334 34.202H40.6364V37.8985H31.3334V34.202Z" fill="#FFB929"/>
-                <path d="M31.3334 39.7468H40.6364V43.4434H31.3334V39.7468Z" fill="#FFB929"/>
-                <path d="M31.3334 28.6571H40.6364V32.3537H31.3334V28.6571Z" fill="#FFB929"/>
-                <path d="M16.4976 30.6011L15.2152 30.5875L15.1349 28.7437C21.9955 28.075 28.1587 24.2638 31.8128 18.4816L29.5909 17.4447L37.9434 12.3654L39.4216 22.0301L36.8496 20.8307C35.0942 23.4632 32.2622 26.6888 28.1866 28.4332C24 30.2247 19.5192 30.6011 16.4976 30.6011Z" fill="#FFB929"/>
-                <path d="M20.6265 43.4434H11.3235V39.7469H20.6265V43.4434Z" fill="#FFB929"/>
-                <path d="M22.4749 34.202H31.7163V37.8986H22.4749V34.202Z" fill="#FFB929"/>
-                <path d="M22.4749 39.7469H31.7163V43.4434H22.4749V39.7469Z" fill="#FFB929"/>
-                </g>
-                <defs>
-                <clipPath id="clip0">
-                <rect width="31.5441" height="31.5441" fill="white" transform="translate(11.3235 12.1324)"/>
-                </clipPath>
-                </defs>
+                <rect width="55" height="55" rx="10" fill="#FFDEDE"/>
+                <path d="M42.9333 39.8H41.8667V34.4667C41.8667 33.8779 41.3888 33.4 40.8 33.4H36.5333C35.9445 33.4 35.4667 33.8779 35.4667 34.4667V39.8H31.2V25.9333C31.2 25.3445 30.7221 24.8667 30.1333 24.8667H25.8667C25.2779 24.8667 24.8 25.3445 24.8 25.9333V39.8H20.5333V17.4C20.5333 16.8112 20.0555 16.3333 19.4667 16.3333H15.2C14.6112 16.3333 14.1333 16.8112 14.1333 17.4V39.8H13.0667C12.4779 39.8 12 40.2779 12 40.8667C12 41.4555 12.4779 41.9333 13.0667 41.9333H42.9333C43.5221 41.9333 44 41.4555 44 40.8667C44 40.2779 43.5221 39.8 42.9333 39.8Z" fill="#FF3838"/>
+                <path d="M40.8 20.6C40.2112 20.6 39.7333 21.0757 39.7333 21.6667V25.4917L26.6218 12.3781C26.4128 12.1712 26.1397 12.0667 25.8666 12.0667C25.5936 12.0667 25.3205 12.1712 25.1114 12.3781C24.6954 12.7941 24.6954 13.4704 25.1114 13.8864L38.225 27H34.4C33.8112 27 33.3333 27.4757 33.3333 28.0667C33.3333 28.6576 33.8112 29.1333 34.4 29.1333H40.8C41.3888 29.1333 41.8666 28.6555 41.8666 28.0667V21.6667C41.8666 21.0757 41.3888 20.6 40.8 20.6Z" fill="#FF3838"/>
               </svg>
+
               <div>
                 <h3 className={classes.statsTitle}>Средний убыток</h3>
-                <h2 className={classes.statsNumber}>18654</h2>
-              </div>
-             </div>
-             <div className={classes.statContainer} style={{}}>
-              <svg className={classes.statsIcon} width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="55" height="55" rx="10" fill="#FFF4DE"/>
-                <g clip-path="url(#clip0)">
-                <path d="M31.3334 34.202H40.6364V37.8985H31.3334V34.202Z" fill="#FFB929"/>
-                <path d="M31.3334 39.7468H40.6364V43.4434H31.3334V39.7468Z" fill="#FFB929"/>
-                <path d="M31.3334 28.6571H40.6364V32.3537H31.3334V28.6571Z" fill="#FFB929"/>
-                <path d="M16.4976 30.6011L15.2152 30.5875L15.1349 28.7437C21.9955 28.075 28.1587 24.2638 31.8128 18.4816L29.5909 17.4447L37.9434 12.3654L39.4216 22.0301L36.8496 20.8307C35.0942 23.4632 32.2622 26.6888 28.1866 28.4332C24 30.2247 19.5192 30.6011 16.4976 30.6011Z" fill="#FFB929"/>
-                <path d="M20.6265 43.4434H11.3235V39.7469H20.6265V43.4434Z" fill="#FFB929"/>
-                <path d="M22.4749 34.202H31.7163V37.8986H22.4749V34.202Z" fill="#FFB929"/>
-                <path d="M22.4749 39.7469H31.7163V43.4434H22.4749V39.7469Z" fill="#FFB929"/>
-                </g>
-                <defs>
-                <clipPath id="clip0">
-                <rect width="31.5441" height="31.5441" fill="white" transform="translate(11.3235 12.1324)"/>
-                </clipPath>
-                </defs>
-              </svg>
-              <div>
-                <h3 className={classes.statsTitle}>Средний доход</h3>
                 <h2 className={classes.statsNumber}>18654</h2>
               </div>
              </div>
