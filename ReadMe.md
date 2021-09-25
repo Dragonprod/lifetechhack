@@ -27,13 +27,13 @@
 
 Демоверсия проекта находится по адресу: [test.com](https://test.com/) 
 
-**Тестовые аккаунты:**
-**admin:**
-Почта - `admin@example.com`
+**Тестовые аккаунты:**\
+**admin:**\
+Почта - `admin@example.com`\
 Пароль - `admin`
 
-**user:**
-Почта - `user@example.com`
+**user:**\
+Почта - `user@example.com`\
 Пароль - `user`
 
 
