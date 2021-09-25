@@ -17,6 +17,7 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import Paper from "@mui/material/Paper";
 import Avatar from "@mui/material/Avatar";
+import API from "../api/api";
 
 const useStyles = makeStyles((theme) => ({
   mainContent: {
@@ -98,11 +99,17 @@ const useStyles = makeStyles((theme) => ({
 
 function RequestsEmpty(props) {
   const classes = useStyles();
+  const redirect = props;
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
 
   const handleClick = () => {
     setOpen(!open);
+  };
+
+  const calculationProcessStart = async () => {
+    const response = await API.post("calc/start?user_id=1");
+    redirect.push('/profile/questions')
   };
 
   return (
@@ -209,7 +216,7 @@ function RequestsEmpty(props) {
               fontWeight: 900,
             }}
             variant="contained"
-            onClick={() => props.push("/profile/questions")}
+            onClick={calculationProcessStart}
           >
             Создать заявку
           </Button>
