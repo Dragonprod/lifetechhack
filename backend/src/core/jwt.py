@@ -3,7 +3,6 @@ import jwt
 from datetime import datetime, timedelta
 from typing import Dict
 
-from ..models.user import UserBase
 from ..models.jwt import JWTUser, JWTMeta
 from ..core.config import JWT_ACCESS_TOKEN_EXPIRE_MINUTES
 
@@ -23,13 +22,13 @@ def create_jwt_token(*, jwt_content: Dict[str, str], secret_key: str, expires_de
     return encoded
 
 
-def create_access_token(user: UserBase, secret_key: str) -> str:
-    return create_jwt_token(jwt_content=JWTUser(username=user.username).dict(), secret_key=secret_key, expires_delta=timedelta(minutes=JWT_ACCESS_TOKEN_EXPIRE_MINUTES))
+def create_access_token(user_id: int, secret_key: str) -> str:
+    return create_jwt_token(jwt_content=JWTUser(user_id=user_id).dict(), secret_key=secret_key, expires_delta=timedelta(minutes=JWT_ACCESS_TOKEN_EXPIRE_MINUTES))
 
 
-def get_username_from_token(token: str, secret_key: str) -> str:
+def get_id_from_token(token: str, secret_key: str) -> str:
     try:
-        return JWTUser(**jwt.decode(token, secret_key, algorithms=[JWT_ALGORITHM])).username
+        return JWTUser(**jwt.decode(token, secret_key, algorithms=[JWT_ALGORITHM])).id
     except jwt.PyJWTError as decode_error:
         raise ValueError("JWT token cannot be decrypted") from decode_error
     except ValidationError as validation_error:
