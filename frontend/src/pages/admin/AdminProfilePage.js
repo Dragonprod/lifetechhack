@@ -417,6 +417,7 @@ function AdminProfilePage(props) {
                   </clipPath>
                 </defs>
               </svg>
+
               <div>
                 <h3 className={classes.statsTitle}>Средний убыток</h3>
                 <h2 className={classes.statsNumber}>18654</h2>
