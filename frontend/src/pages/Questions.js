@@ -132,6 +132,7 @@ function Questions(props) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [step, setStep] = React.useState(0);
+  const [hasWife, setHasWife] = React.useState(false);
 
   const step1 = step == 0 ? true : false;
   const step2 = step == 1 ? true : false;
@@ -139,6 +140,7 @@ function Questions(props) {
   const step4 = step == 3 ? true : false;
   const step5 = step == 4 ? true : false;
   const step6 = step == 5 ? true : false;
+  const step7 = step == 6 ? true : false;
 
   const handleClick = () => {
     setOpen(!open);
@@ -150,6 +152,12 @@ function Questions(props) {
 
   const handleStepBack = () => {
     setStep((prevStep) => prevStep - 1);
+  };
+
+  const handleWife = (event, value) => {
+    console.log(value);
+    if (value.label == "Женат") setHasWife(true);
+    else setStep((prevStep) => prevStep + 2);
   };
 
   return (
@@ -242,24 +250,6 @@ function Questions(props) {
         </List>
       </nav>
       <section className={classes.mainContent}>
-        {/* <Paper elevation={3} className={classes.profileContainer}>
-            <img src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album" alt="Логотип министерства Удмуртии" />
-            <h1 className={classes.questionNumber}>Вопрос 2a</h1>
-            <p className={classes.questionText}>Ежемесячный доход Вашей жены:</p>
-            <input type="text" className={classes.inputField} />
-            <Button
-              style={{
-                background: "#F93866",
-                padding: ".5em 3em",
-                marginTop: "4em",
-                fontWeight: 900,
-              }}
-              variant="contained"
-            >
-              Далее
-            </Button>
-        </Paper> */}
-
         {step1 && (
           <Paper elevation={3} className={classes.profileContainer}>
             <img
@@ -297,6 +287,7 @@ function Questions(props) {
               id="combo-box-demo"
               options={married}
               sx={{ width: 300 }}
+              onChange={handleWife}
               renderInput={(params) => <TextField {...params} label="" />}
             />
             <div>
@@ -329,7 +320,48 @@ function Questions(props) {
           </Paper>
         )}
 
-        {step3 && (
+        {hasWife && step3 && (
+          <Paper elevation={3} className={classes.profileContainer}>
+            <img
+              src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album"
+              alt="Логотип министерства Удмуртии"
+            />
+            <h1 className={classes.questionNumber}>Вопрос 2a</h1>
+            <p className={classes.questionText}>
+              Ежемесячный доход Вашей жены:
+            </p>
+            <input type="text" className={classes.inputField} />
+            <div>
+              <Button
+                style={{
+                  background: "#3D348B",
+                  padding: ".5em 3em",
+                  marginTop: "4em",
+                  fontWeight: 900,
+                  marginRight: "2em",
+                }}
+                onClick={handleStepBack}
+                variant="contained"
+              >
+                Назад
+              </Button>
+              <Button
+                style={{
+                  background: "#F93866",
+                  padding: ".5em 3em",
+                  marginTop: "4em",
+                  fontWeight: 900,
+                }}
+                onClick={handleStepNext}
+                variant="contained"
+              >
+                Далее
+              </Button>
+            </div>
+          </Paper>
+        )}
+
+        {step4 && (
           <Paper elevation={3} className={classes.profileContainer}>
             <img
               src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album"
@@ -368,13 +400,13 @@ function Questions(props) {
           </Paper>
         )}
 
-        {step4 && (
+        {step5 && (
           <Paper elevation={3} className={classes.profileContainer}>
             <img
               src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album"
               alt="Логотип министерства Удмуртии"
             />
-            <h1 className={classes.questionNumber}>Вопрос 5</h1>
+            <h1 className={classes.questionNumber}>Вопрос 4</h1>
             <p className={classes.questionText}>Ваше имущество:</p>
             <div className={classes.inputContainer}>
               <p className={classes.lightText}>Количество квартир</p>
@@ -419,13 +451,13 @@ function Questions(props) {
           </Paper>
         )}
 
-        {step5 && (
+        {step6 && (
           <Paper elevation={3} className={classes.profileContainer}>
             <img
               src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album"
               alt="Логотип министерства Удмуртии"
             />
-            <h1 className={classes.questionNumber}>Вопрос 6</h1>
+            <h1 className={classes.questionNumber}>Вопрос 5</h1>
             <p className={classes.questionText}>Группа инвалидности:</p>
             <Autocomplete
               disablePortal
@@ -465,13 +497,13 @@ function Questions(props) {
           </Paper>
         )}
 
-        {step6 && (
+        {step7 && (
           <Paper elevation={3} className={classes.profileContainer}>
             <img
               src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album"
               alt="Логотип министерства Удмуртии"
             />
-            <h1 className={classes.questionNumber}>Вопрос 7</h1>
+            <h1 className={classes.questionNumber}>Вопрос 6</h1>
             <p className={classes.questionText}>Хронические заболевания:</p>
             <Autocomplete
               disablePortal
