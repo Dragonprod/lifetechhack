@@ -57,6 +57,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     flexDirection: "column",
     padding: "2em",
+    maxWidth: "25%"
   },
   inputField: {
     background: "#E0E2DB",
@@ -243,7 +244,7 @@ function Questions(props) {
         </List>
       </nav>
       <section className={classes.mainContent}>
-        <Paper elevation={3} className={classes.profileContainer}>
+        {/* <Paper elevation={3} className={classes.profileContainer}>
             <img src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album" alt="Логотип министерства Удмуртии" />
             <h1 className={classes.questionNumber}>Вопрос 2a</h1>
             <p className={classes.questionText}>Ежемесячный доход Вашей жены:</p>
@@ -259,7 +260,7 @@ function Questions(props) {
             >
               Далее
             </Button>
-        </Paper>
+        </Paper> */}
 
 
         {step1 &&
@@ -518,6 +519,94 @@ function Questions(props) {
             </div>
           </Paper>
         )}
+
+
+
+          {/* <Paper elevation={3} className={classes.profileContainer}>
+            <img
+              src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album"
+              alt="Логотип министерства Удмуртии"
+            />
+            <h1 className={classes.questionNumber}>Ответ 1</h1>
+            <p className={classes.questionText}>Ваш доход превышает прожиточный минимум</p>
+            <Button
+              style={{
+                background: "#F93866",
+                padding: ".5em 3em",
+                marginTop: "4em",
+                fontWeight: 900,
+              }}
+              onClick={handleStepNext}
+              variant="contained"
+            >
+              Закрыть
+            </Button>
+          </Paper> */}
+
+
+          {/* <Paper elevation={3} className={classes.profileContainer}>
+            <img
+              src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album"
+              alt="Логотип министерства Удмуртии"
+            />
+            <h1 className={classes.questionNumber}>Ответ 2</h1>
+            <p className={classes.questionText}>Учитывая объекты Вашей собственности, Ваше финансовое положение выше прожиточного минимума</p>
+            <Button
+              style={{
+                background: "#F93866",
+                padding: ".5em 3em",
+                marginTop: "4em",
+                fontWeight: 900,
+              }}
+              onClick={handleStepNext}
+              variant="contained"
+            >
+              Закрыть
+            </Button>
+          </Paper> */}
+      
+          {/* <Paper elevation={3} className={classes.profileContainer}>
+            <img
+              src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album"
+              alt="Логотип министерства Удмуртии"
+            />
+            <h1 className={classes.questionNumber}>Ответ 3</h1>
+            <p className={classes.questionText}>В качестве помощи Вам будут начисляться льготы</p>
+            <Button
+              style={{
+                background: "#F93866",
+                padding: ".5em 3em",
+                marginTop: "4em",
+                fontWeight: 900,
+              }}
+              onClick={handleStepNext}
+              variant="contained"
+            >
+              Закрыть
+            </Button>
+          </Paper> */}
+
+
+          <Paper elevation={3} className={classes.profileContainer}>
+            <img
+              src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album"
+              alt="Логотип министерства Удмуртии"
+            />
+            <h1 className={classes.questionNumber}>Ответ 4</h1>
+            <p className={classes.questionText}>В качестве помощи Вам будут предоставлять лекарства по Вашему диагнозу</p>
+            <Button
+              style={{
+                background: "#F93866",
+                padding: ".5em 3em",
+                marginTop: "4em",
+                fontWeight: 900,
+              }}
+              onClick={handleStepNext}
+              variant="contained"
+            >
+              Закрыть
+            </Button>
+          </Paper>      
       </section>
     </div>
   );
