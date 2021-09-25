@@ -21,8 +21,6 @@ import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
 
 const married = [
   { label: 'Женат'},
@@ -294,6 +292,24 @@ function Questions(props) {
           </Button>
           </div>
         </Paper> */}
+
+        <Paper elevation={3} className={classes.profileContainer}>
+          <img src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album" alt="Логотип министерства Удмуртии" />
+          <h1 className={classes.questionNumber}>Вопрос 2a</h1>
+          <p className={classes.questionText}>Ежемесячный доход Вашей жены:</p>
+          <input type="text" className={classes.inputField} />
+          <Button
+            style={{
+              background: "#F93866",
+              padding: ".5em 3em",
+              marginTop: "4em",
+              fontWeight: 900,
+            }}
+            variant="contained"
+          >
+            Далее
+          </Button>
+        </Paper>
         
         {/* <Paper elevation={3} className={classes.profileContainer}>
           <img src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album" alt="Логотип министерства Удмуртии" />
@@ -370,50 +386,6 @@ function Questions(props) {
           </Button>
           </div>
         </Paper> */}
-
-          {/* <Paper elevation={3} className={classes.profileContainer}>
-            <img src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album" alt="Логотип министерства Удмуртии" />
-            <h1 className={classes.questionNumber}>Вопрос 5</h1>
-            <p className={classes.questionText}>Ваше имущество:</p>
-            <div className={classes.inputContainer}>
-                <p className={classes.lightText}>Количество квартир</p>
-                <input type="text" className={classes.inputField} />
-            </div>
-            <div className={classes.inputContainer}>
-                <p className={classes.lightText}>Количество домов</p>
-                <input type="text" className={classes.inputField} />
-            </div>
-            <div className={classes.inputContainer}>
-                <p className={classes.lightText}>Количество машин</p>
-                <input type="text" className={classes.inputField} />
-            </div>
-            
-            <div>
-              <Button
-                style={{
-                  background: "#3D348B",
-                  padding: ".5em 3em",
-                  marginTop: "4em",
-                  fontWeight: 900,
-                  marginRight: "2em"
-                }}
-                variant="contained"
-              >
-                Назад
-              </Button>
-              <Button
-              style={{
-                background: "#F93866",
-                padding: ".5em 3em",
-                marginTop: "4em",
-                fontWeight: 900,
-              }}
-              variant="contained"
-            >
-              Далее
-            </Button>
-            </div>
-          </Paper> */}
 
           {/* <Paper elevation={3} className={classes.profileContainer}>
             <img src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album" alt="Логотип министерства Удмуртии" />
