@@ -97,6 +97,13 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "space-around",
     width: "900px"
+  }, 
+  changeBtn:{
+    textDecoration: "none",
+    color: "#4D9DE0",
+    padding: "1em 2em",
+    border: "1px solid #4D9DE0",
+    cursor: "pointer",
   }
 }));
 
@@ -148,17 +155,17 @@ function UserProfilePage() {
               <div className={classes.dataField}>
                 <h2>Телефон</h2>
                 <p className={classes.userData}>8 999 123-45-67</p>
-                <a href="">Изменить</a>
+                <button className={classes.changeBtn} href="#">Изменить</button>
               </div>
               <div className={classes.dataField}>
                 <h2>Эл. почта</h2>
                 <p className={classes.userData}>ivanov@mail.ru</p>
-                <a href="">Изменить</a>
+                <button className={classes.changeBtn} href="#">Изменить</button>
               </div>
               <div className={classes.dataField}>
                 <h2>Пароль</h2>
                 <p className={classes.userData}>•••••••••••••••••••••••••</p>
-                <a href="">Изменить</a>
+                <button className={classes.changeBtn} href="#" onClick={console.log('click')}>Изменить</button>
               </div>
             </div>
           </div>
