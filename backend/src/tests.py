@@ -30,11 +30,12 @@ def test_region():
     # Создаём регоин
     for region in list_regions:
         region = Region(name=region)
+        year = 2016
+
         db.add(region)
         for i in range(0, 60):
-            year = 2016
             date = datetime.date(year, i % 12+1, 1)
-            if i/12 == 1:
+            if i % 11 == 0 and i != -0:
                 year += 1
             region.incomes.append(IncomeRegion(
                 date=date, count=get_random(20000, 70000)))
@@ -51,10 +52,10 @@ def test_region():
     for distirict in district_list:
         distirict = District(name=distirict)
         db.add(region)
+        year = 2016
         for i in range(0, 60):
-            year = 2016
             date = datetime.date(year, i % 12+1, 1)
-            if i/12 == 1:
+            if i % 11 == 0 and i != -0:
                 year += 1
             distirict.incomes.append(IncomeDistrict(
                 date=date, count=get_random(20000, 70000)))
@@ -70,10 +71,11 @@ def test_region():
     for city in city_list:
         city = City(name=city)
         db.add(region)
+        year = 2016
+
         for i in range(0, 60):
-            year = 2016
             date = datetime.date(year, i % 12+1, 1)
-            if i/12 == 1:
+            if i % 11 == 0 and i != -0:
                 year += 1
             city.incomes.append(IncomeCity(
                 date=date, count=get_random(20000, 70000)))
@@ -108,10 +110,10 @@ def test_region():
     for organization in organization_list:
         organization = Organization(name=organization)
         db.add(organization)
+        year = 2016
         for i in range(0, 60):
-            year = 2016
             date = datetime.date(year, i % 12+1, 1)
-            if i/12 == 1:
+            if i % 11 == 0 and i != -0:
                 year += 1
             organization.incomes.append(IncomeOrganization(
                 date=date, count=get_random(20000, 200000)))
@@ -125,10 +127,10 @@ def test_region():
     service_list = [('Молоко', 'л'), ('Сыр', 'кг'), ('Хлеб', 'кг'), ('Колбаса', 'кг'), ('Арбуз', 'кг'),
                     ('Дыня', 'кг'), ('Сахар', 'кг'), ('Соль', 'кг'), ('Шоколад', 'кг'), ('Кофе', 'кг'), ('Чай', 'кг')]
     for service in service_list:
+        year = 2016
         for i in range(0, 60):
-            year = 2016
             date = datetime.date(year, i % 12+1, 1)
-            if i/12 == 1:
+            if i % 11 == 0 and i != -0:
                 year += 1
             db.add(ServicesOrProductsOfThePrice(
                 name=service[0], date=date, price=get_random(0, 200), unit=service[1]))
