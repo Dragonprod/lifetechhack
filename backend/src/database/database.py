@@ -18,6 +18,28 @@ def get_db():
         db.close()
 
 
+class User(Base):
+    __tablename__ = "user"
+    id = Column(Integer, primary_key=True)
+    email = Column(String(128))
+    password = Column(String(256))
+    profile = relationship('UserDocument', lazy='joined')
+
+
+class UserDocument(Base):
+    __tablename__ = "user_documents"
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    passportGiveDate = Column(Date)
+    passportCode = Column(String(32))
+    passportGiveBy: Column(Date)
+    passportBirthCity: Column(String(32))
+    snilsId: Column(String(128))
+    regStreet: Column(String(128))
+    regHouse: Column(String(128))
+    regFlat: Column(String(128))
+
+
 class Region(Base):
     """Регионы """
     __tablename__ = "region"
