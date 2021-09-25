@@ -6,3 +6,7 @@ psycopg2
 requests
 asyncio
 typing
+jwt
+bcrypt
+passlib
+orjson
