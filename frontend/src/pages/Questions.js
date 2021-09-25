@@ -139,7 +139,10 @@ function Questions(props) {
   const [step, setStep] = React.useState(0);
   const [hasWife, setHasWife] = React.useState(false);
   const [maintenance, setMaintenance] = React.useState(false);
-  const [currentAns, setCurrentAns] = React.useState(0)
+  const [currentAns, setCurrentAns] = React.useState(0);
+
+  const [poor, setPoor] = React.useState(false);
+  const [help, setHelp] = React.useState(false);
 
   const step1 = step == 0 ? true : false;
   const step2 = step == 1 ? true : false;
@@ -185,13 +188,17 @@ function Questions(props) {
   };
 
   const calculationProcess = async () => {
-    const data = {ans: currentAns, step: step}
+    const data = { ans: currentAns, step: step };
     const response = await API.put("calc/start/1", data);
   };
 
   const calculationProcessStop = async () => {
+    setStep((prevStep) => prevStep + 1);
     const data = { report_id: 1 };
     const response = await API.post("calc/stop", data);
+
+    setPoor(response.data.poor);
+    setHelp(response.data.help);
   };
 
   return (
@@ -587,7 +594,7 @@ function Questions(props) {
                   marginTop: "4em",
                   fontWeight: 900,
                 }}
-                onClick={handleStepNext}
+                onClick={calculationProcessStop}
                 variant="contained"
               >
                 Далее
@@ -596,7 +603,7 @@ function Questions(props) {
           </Paper>
         )}
 
-        {step8 && (
+        {!poor && step8 && (
           <Paper elevation={3} className={classes.profileContainer}>
             <img
               src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album"
@@ -604,7 +611,7 @@ function Questions(props) {
             />
             <h1 className={classes.questionNumber}>Ответ 1</h1>
             <p className={classes.questionText}>
-              Ваш доход превышает прожиточный минимум
+              Вам не нужна помощь. Так держать!
             </p>
             <Button
               style={{
@@ -642,13 +649,16 @@ function Questions(props) {
             </Button>
           </Paper> */}
 
-        {/* <Paper elevation={3} className={classes.profileContainer}>
+        {poor && step8 && (
+          <Paper elevation={3} className={classes.profileContainer}>
             <img
               src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album"
               alt="Логотип министерства Удмуртии"
             />
             <h1 className={classes.questionNumber}>Ответ 3</h1>
-            <p className={classes.questionText}>В качестве помощи Вам будут начисляться льготы</p>
+            <p className={classes.questionText}>
+              В качестве помощи Вам будут начисляться льготы
+            </p>
             <Button
               style={{
                 background: "#F93866",
@@ -661,7 +671,8 @@ function Questions(props) {
             >
               Закрыть
             </Button>
-          </Paper> */}
+          </Paper>
+        )}
 
         {/* <Paper elevation={3} className={classes.profileContainer}>
           <img
