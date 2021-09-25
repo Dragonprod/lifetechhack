@@ -1,19 +1,23 @@
 import React from "react";
 import { Route } from "react-router";
+
 import LandingPage from "../../../pages/LandingPage";
 import AuthPage from "../../../pages/AuthPage";
+
 import UserProfilePage from "../../../pages/user/UserProfilePage";
-import CalculatorPage from "../../../pages/user/CalculatorPage";
+import RequestsEmpty from "../../../pages/RequestsEmpty";
+import Questions from "../../../pages/Questions"
 
 import AdminProfilePage from "../../../pages/admin/AdminProfilePage";
 import HeatMapPage from "../../../pages/admin/HeatMapPage";
-import RequestsEmpty from "../../../pages/RequestsEmpty";
-import Questions from "../../../pages/Questions"
+import RegStatsMapPage from "../../../pages/admin/RegStatsMapPage";
+import RequestsPage from "../../../pages/admin/RequestsPage";
 
 const routes = (
   <div>
     <Route exact path="/" component={LandingPage} />
     <Route path="/login" component={AuthPage} />
+
     <Route
       path="/profile"
       render={({ match: { url } }) => (
@@ -25,9 +29,19 @@ const routes = (
         </>
       )}
     />
-    {/* <Route path="/profile" component={UserProfilePage} />
-    <Route path="/profile/map" component={HeatMapPage} />
-    <Route path="/profile/requests" component={RequestsEmpty} /> */}
+    
+    <Route
+      path="/admin"
+      render={({ match: { url } }) => (
+        <>
+          <Route path={`${url}/`} component={AdminProfilePage} exact />
+          <Route path={`${url}/heatmap`} component={HeatMapPage} />
+          <Route path={`${url}/rmap`} component={RegStatsMapPage} />
+          <Route path={`${url}/requests`} component={RequestsPage} />
+        </>
+      )}
+    />
+
   </div>
 );
 
