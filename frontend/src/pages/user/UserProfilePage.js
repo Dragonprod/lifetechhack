@@ -1,9 +1,7 @@
 import React from "react";
 import { makeStyles, useTheme } from "@material-ui/styles";
 // import { List, sliderClasses } from "@mui/material";
-import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
-import ListSubheader from "@mui/material/ListSubheader";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -142,6 +140,7 @@ function UserProfilePage() {
           </li>
         </ul>
       </header>
+     
       <nav className={classes.sidebar}>
         <div className={classes.logoContainer}>
           <img
