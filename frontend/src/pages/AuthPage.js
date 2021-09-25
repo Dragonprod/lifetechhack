@@ -1,27 +1,35 @@
 import React from "react";
-import { makeStyles, useTheme } from '@material-ui/styles';
-import { FilledInput } from '@mui/material';
-import { Link } from "react-router-dom";
-import { border, fontSize } from "@mui/system";
+import { push } from "connected-react-router";
+import { connect } from "react-redux";
+import { setFormData } from "../store/dataStorage/actions";
+import { makeStyles, useTheme, withStyles } from "@material-ui/styles";
+import Button from "@mui/material/Button";
+import Paper from "@mui/material/Paper";
+import Divider from "@mui/material/Divider";
+import { Typography } from "@mui/material";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
+import API from "../api/api";
 
 const useStyles = makeStyles((theme) => ({
-  authSection:{
+  authSection: {
     width: "100%",
     height: "100vh",
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
-  authContainer:{
+  authContainer: {
     // width: "50%",
     padding: "2em",
     boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-    borderRadius: "20px"
+    borderRadius: "20px",
   },
   logoContainer: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   inputField: {
     background: "#E0E2DB",
@@ -30,77 +38,137 @@ const useStyles = makeStyles((theme) => ({
     outline: "none",
     padding: "1em 2em",
     width: "320px",
-    fontSize: "18px"
-    
+    fontSize: "18px",
   },
   udmurtLogo: {
     width: "50px",
-    height: "50px"
+    height: "50px",
   },
-  udmurtTitle:{
+  udmurtTitle: {
     fontWeight: 900,
     fontSize: "20px",
     lineHeight: "18px",
-    marginLeft: ".5em"
+    marginLeft: ".5em",
   },
-  loginBtn:{
+  loginBtn: {
     background: "#F93866",
     borderRadius: "10px",
     border: "none",
     outline: "none",
-    padding: ".5em 2em", 
+    padding: ".5em 2em",
     width: "100%",
-    color: "#fff", 
+    color: "#fff",
     fontWeight: 900,
-    fontSize: "24px"
+    fontSize: "24px",
   },
   inputContainer: {
-    margin: "2em 0"
-
+    margin: "2em 0",
   },
   lightText: {
-    color: "rgba(0, 0, 0, 0.5)"
+    color: "rgba(0, 0, 0, 0.5)",
   },
   forgetRef: {
     textDecoration: "none",
-    color: "#4D9DE0"
-  }
+    color: "#4D9DE0",
+  },
 }));
 
-function AuthProfilePage() {
-    const classes = useStyles();
-    const theme = useTheme();
-    
-    return (
-      <section className={classes.authSection}>
-        <div className={classes.authContainer}>
-          <div className={classes.logoContainer}>
-              <img className={classes.udmurtLogo} src="https://abali.ru/wp-content/uploads/2013/01/gerb_udmurtii.png" alt="Герб Удмуртии"/>
-              <h2 className={classes.udmurtTitle}>Республика <br/> Удмуртия</h2>
-          </div>
-          <h2 style={{textAlign: "center", fontSize: "36px"}}>Авторизация</h2>
-          <div className={classes.inputContainer}>
-            <p className={classes.lightText}>Почта</p>
-            <input type="text" className={classes.inputField}/>
-          </div>
-          <div className={classes.inputContainer}>
-            <p className={classes.lightText}>Пароль</p>
-            <input type="password" className={classes.inputField}/>
-          </div>
-          <div style={{display: "flex", justifyContent: "flex-end"}}>
-            <Link className={classes.forgetRef} to="/">Забыли пароль?</Link>
-          </div>
-          <div>
-              <button className={classes.loginBtn} style={{margin: "3em 0 0"}}>Войти</button>
-              <Link to="/profile">Перейти в кабинет пользователя</Link>
-              <br/>
-              <Link to="/profile/requests">Перейти в requests</Link>
-          </div>
-          
+function AuthPage(props) {
+  const classes = useStyles();
+  const theme = useTheme();
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const loginProccess = async (e) => {
+    e.preventDefault();
+   
+    const data = {
+      email: 'admin',
+      password: 'admin',
+    };
+
+    API.post(`users/login`, data).then((res) => {
+      console.log(res);
+    });
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  return (
+    <div className={classes.authSection}>
+      <Paper elevation={3} className={classes.authContainer}>
+        <div className={classes.logoContainer}>
+          <img
+            className={classes.udmurtLogo}
+            src="https://abali.ru/wp-content/uploads/2013/01/gerb_udmurtii.png"
+            alt="Герб Удмуртии"
+          />
+          <h2 className={classes.udmurtTitle}>
+            Республика <br /> Удмуртия
+          </h2>
         </div>
-      </section>
-      
-    );
-  }
-  
-  export default AuthProfilePage;
+
+        <h2 style={{ textAlign: "center", fontSize: "36px" }}>Авторизация</h2>
+        <div className={classes.inputContainer}>
+          <p className={classes.lightText}>Почта</p>
+          <input type="text" className={classes.inputField} />
+        </div>
+        <div className={classes.inputContainer}>
+          <p className={classes.lightText}>Пароль</p>
+          <input type="password" className={classes.inputField} />
+        </div>
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <Typography className={classes.forgetRef} variant="h6">
+            Забыли пароль?
+          </Typography>
+        </div>
+        <div>
+          <Button
+            className={classes.loginBtn}
+            style={{ background: "#F93866", padding: ".5em 3em" }}
+            variant="contained"
+            onClick={loginProccess}
+          >
+            Войти
+          </Button>
+          <Snackbar
+            anchorOrigin={{ vertical: "top", horizontal: "right" }}
+            open={open}
+            autoHideDuration={3000}
+            onClose={handleClose}
+          >
+            <Alert
+              severity="error"
+              onClose={handleClose}
+              sx={{ width: "100%" }}
+            >
+              <AlertTitle>Ошибка</AlertTitle>
+              Проверьте — <strong>логин или пароль!</strong>
+            </Alert>
+          </Snackbar>
+          <Divider />
+        </div>
+      </Paper>
+    </div>
+  );
+}
+
+const mapDispatchToProps = {
+  setFormData,
+  push,
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(withStyles(useStyles)(AuthPage));
