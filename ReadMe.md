@@ -25,7 +25,7 @@
 
 ### Демо:
 
-Демоверсия проекта находится по адресу: ['test.com'](https://test.com/) 
+Демоверсия проекта находится по адресу: [test.com](https://test.com/) 
 
 **Тестовые аккаунты:**
 **admin:**
@@ -68,9 +68,9 @@ sudo systemctl status docker
 
 ### Пути:
 
-**Frontend part** - ['http://localhost:3000/'](http://localhost:3000/)\
-**Backend part** - ['http://localhost:8080/'](http://localhost:8080/)\
-**Backend docs part** - ['http://localhost:8080/docs'](http://localhost:8080/)
+**Frontend part** - [http://localhost:3000/](http://localhost:3000/)\
+**Backend part** - [http://localhost:8080/](http://localhost:8080/)\
+**Backend docs part** - [http://localhost:8080/docs](http://localhost:8080/)
 
 ## Разработчики:
 
