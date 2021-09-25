@@ -77,31 +77,40 @@ function AuthPage(props) {
   const classes = useStyles();
   const theme = useTheme();
 
-  const [open, setOpen] = React.useState(false);
+  const redirect = props;
 
-  const handleClick = () => {
-    setOpen(true);
-  };
+  const [error, setError] = React.useState(false);
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
   const loginProccess = async (e) => {
     e.preventDefault();
-   
+
     const data = {
-      email: 'admin',
-      password: 'admin',
+      email: email,
+      password: password,
     };
 
-    API.post(`users/login`, data).then((res) => {
-      console.log(res);
-    });
+    const res = await API.post(`users/login`, data);
+
+    if (res.data.status_code == 400) setError(true);
+    else if (res.data.status_code == 404) setError(true);
+    else redirect.push("/profile");
   };
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
+    setError(false);
+  };
 
-    setOpen(false);
+  const handleChangeEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleChangePassword = (e) => {
+    setPassword(e.target.value);
   };
 
   return (
@@ -121,11 +130,19 @@ function AuthPage(props) {
         <h2 style={{ textAlign: "center", fontSize: "36px" }}>Авторизация</h2>
         <div className={classes.inputContainer}>
           <p className={classes.lightText}>Почта</p>
-          <input type="text" className={classes.inputField} />
+          <input
+            type="text"
+            className={classes.inputField}
+            onChange={handleChangeEmail}
+          />
         </div>
         <div className={classes.inputContainer}>
           <p className={classes.lightText}>Пароль</p>
-          <input type="password" className={classes.inputField} />
+          <input
+            type="password"
+            className={classes.inputField}
+            onChange={handleChangePassword}
+          />
         </div>
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
           <Typography className={classes.forgetRef} variant="h6">
@@ -141,9 +158,10 @@ function AuthPage(props) {
           >
             Войти
           </Button>
+
           <Snackbar
             anchorOrigin={{ vertical: "top", horizontal: "right" }}
-            open={open}
+            open={error}
             autoHideDuration={3000}
             onClose={handleClose}
           >
@@ -156,6 +174,7 @@ function AuthPage(props) {
               Проверьте — <strong>логин или пароль!</strong>
             </Alert>
           </Snackbar>
+
           <Divider />
         </div>
       </Paper>
