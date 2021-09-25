@@ -16,7 +16,7 @@ router = APIRouter()
 @router.post(
     "/calc/start",
     response_model=QuestionBaseResponse,
-    tags=["calculation"],
+    tags=["Calculation"],
     status_code=HTTP_201_CREATED,
 )
 async def start_calc(user_id: int, db: Session = Depends(get_db)):
@@ -87,7 +87,7 @@ async def stop(report_id: int, db: Session = Depends(get_db)):
         help = False
 
     if owners >= 2 or income/person > 10465:
-        poor = True
+        poor = False
 
     report.complited = True
     db.commit()
