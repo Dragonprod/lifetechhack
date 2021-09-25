@@ -17,9 +17,12 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import Paper from "@mui/material/Paper";
 import Avatar from "@mui/material/Avatar";
-
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
+import API from "../api/api";
 
 const married = [{ label: "Женат" }, { label: "Не женат" }];
 
@@ -130,8 +133,16 @@ const useStyles = makeStyles((theme) => ({
 function Questions(props) {
   const classes = useStyles();
   const theme = useTheme();
+  const redirect = props;
+
   const [open, setOpen] = React.useState(false);
   const [step, setStep] = React.useState(0);
+  const [hasWife, setHasWife] = React.useState(false);
+  const [maintenance, setMaintenance] = React.useState(false);
+  const [currentAns, setCurrentAns] = React.useState(0);
+
+  const [poor, setPoor] = React.useState(false);
+  const [help, setHelp] = React.useState(false);
 
   const step1 = step == 0 ? true : false;
   const step2 = step == 1 ? true : false;
@@ -139,6 +150,20 @@ function Questions(props) {
   const step4 = step == 3 ? true : false;
   const step5 = step == 4 ? true : false;
   const step6 = step == 5 ? true : false;
+  const step7 = step == 6 ? true : false;
+  const step8 = step == 7 ? true : false;
+
+  const handleMaintenanceClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setMaintenance(false);
+  };
+
+  const handleMaintenanceOpen = () => {
+    setMaintenance(true);
+    console.log("masiiaidia");
+  };
 
   const handleClick = () => {
     setOpen(!open);
@@ -150,6 +175,30 @@ function Questions(props) {
 
   const handleStepBack = () => {
     setStep((prevStep) => prevStep - 1);
+  };
+
+  const handleWife = (event, value) => {
+    console.log(value);
+    if (value.label == "Женат") setHasWife(true);
+    else setStep((prevStep) => prevStep + 2);
+  };
+
+  const handleClose = () => {
+    redirect.push("/profile/requests");
+  };
+
+  const calculationProcess = async () => {
+    const data = { ans: currentAns, step: step };
+    const response = await API.put("calc/start/1", data);
+  };
+
+  const calculationProcessStop = async () => {
+    setStep((prevStep) => prevStep + 1);
+    const data = { report_id: 1 };
+    const response = await API.post("calc/stop", data);
+
+    setPoor(response.data.poor);
+    setHelp(response.data.help);
   };
 
   return (
@@ -188,6 +237,7 @@ function Questions(props) {
             Республика <br /> Удмуртия
           </h2>
         </div>
+
         <List
           sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
           component="nav"
@@ -207,6 +257,23 @@ function Questions(props) {
             <ListItemText primary="Мои данные" />
             {open ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
+
+          {/* <Snackbar
+            anchorOrigin={{ vertical: "top", horizontal: "right" }}
+            open={true}
+            autoHideDuration={3000}
+            onClose={handleMaintenanceClose}
+          >
+            <Alert
+              severity="error"
+              onClose={handleMaintenanceClose}
+              sx={{ width: "100%" }}
+            >
+              <AlertTitle>Ошибка</AlertTitle>
+              Проверьте — <strong>логин или пароль!</strong>
+            </Alert>
+          </Snackbar> */}
+
           <Collapse in={open} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <ListItemButton
@@ -216,18 +283,18 @@ function Questions(props) {
                 <ListItemText style={{ marginLeft: 24 }} primary="Мои данные" />
               </ListItemButton>
 
-              <ListItemButton sx={{ pl: 2 }}>
+              <ListItemButton sx={{ pl: 2 }} onClick={handleMaintenanceOpen}>
                 <ListItemText
                   style={{ marginLeft: 24 }}
                   primary="Мое имущество"
                 />
               </ListItemButton>
 
-              <ListItemButton sx={{ pl: 2 }}>
+              <ListItemButton sx={{ pl: 2 }} onClick={handleMaintenanceOpen}>
                 <ListItemText style={{ marginLeft: 24 }} primary="Моя семья" />
               </ListItemButton>
 
-              <ListItemButton sx={{ pl: 2 }}>
+              <ListItemButton sx={{ pl: 2 }} onClick={handleMaintenanceOpen}>
                 <ListItemText style={{ marginLeft: 24 }} primary="Моя работа" />
               </ListItemButton>
             </List>
@@ -241,25 +308,8 @@ function Questions(props) {
           </ListItemButton>
         </List>
       </nav>
-      <section className={classes.mainContent}>
-        {/* <Paper elevation={3} className={classes.profileContainer}>
-            <img src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album" alt="Логотип министерства Удмуртии" />
-            <h1 className={classes.questionNumber}>Вопрос 2a</h1>
-            <p className={classes.questionText}>Ежемесячный доход Вашей жены:</p>
-            <input type="text" className={classes.inputField} />
-            <Button
-              style={{
-                background: "#F93866",
-                padding: ".5em 3em",
-                marginTop: "4em",
-                fontWeight: 900,
-              }}
-              variant="contained"
-            >
-              Далее
-            </Button>
-        </Paper> */}
 
+      <section className={classes.mainContent}>
         {step1 && (
           <Paper elevation={3} className={classes.profileContainer}>
             <img
@@ -297,6 +347,7 @@ function Questions(props) {
               id="combo-box-demo"
               options={married}
               sx={{ width: 300 }}
+              onChange={handleWife}
               renderInput={(params) => <TextField {...params} label="" />}
             />
             <div>
@@ -329,7 +380,48 @@ function Questions(props) {
           </Paper>
         )}
 
-        {step3 && (
+        {hasWife && step3 && (
+          <Paper elevation={3} className={classes.profileContainer}>
+            <img
+              src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album"
+              alt="Логотип министерства Удмуртии"
+            />
+            <h1 className={classes.questionNumber}>Вопрос 2a</h1>
+            <p className={classes.questionText}>
+              Ежемесячный доход Вашей жены:
+            </p>
+            <input type="text" className={classes.inputField} />
+            <div>
+              <Button
+                style={{
+                  background: "#3D348B",
+                  padding: ".5em 3em",
+                  marginTop: "4em",
+                  fontWeight: 900,
+                  marginRight: "2em",
+                }}
+                onClick={handleStepBack}
+                variant="contained"
+              >
+                Назад
+              </Button>
+              <Button
+                style={{
+                  background: "#F93866",
+                  padding: ".5em 3em",
+                  marginTop: "4em",
+                  fontWeight: 900,
+                }}
+                onClick={handleStepNext}
+                variant="contained"
+              >
+                Далее
+              </Button>
+            </div>
+          </Paper>
+        )}
+
+        {step4 && (
           <Paper elevation={3} className={classes.profileContainer}>
             <img
               src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album"
@@ -368,13 +460,13 @@ function Questions(props) {
           </Paper>
         )}
 
-        {step4 && (
+        {step5 && (
           <Paper elevation={3} className={classes.profileContainer}>
             <img
               src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album"
               alt="Логотип министерства Удмуртии"
             />
-            <h1 className={classes.questionNumber}>Вопрос 5</h1>
+            <h1 className={classes.questionNumber}>Вопрос 4</h1>
             <p className={classes.questionText}>Ваше имущество:</p>
             <div className={classes.inputContainer}>
               <p className={classes.lightText}>Количество квартир</p>
@@ -419,13 +511,13 @@ function Questions(props) {
           </Paper>
         )}
 
-        {step5 && (
+        {step6 && (
           <Paper elevation={3} className={classes.profileContainer}>
             <img
               src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album"
               alt="Логотип министерства Удмуртии"
             />
-            <h1 className={classes.questionNumber}>Вопрос 6</h1>
+            <h1 className={classes.questionNumber}>Вопрос 5</h1>
             <p className={classes.questionText}>Группа инвалидности:</p>
             <Autocomplete
               disablePortal
@@ -465,13 +557,13 @@ function Questions(props) {
           </Paper>
         )}
 
-        {step6 && (
+        {step7 && (
           <Paper elevation={3} className={classes.profileContainer}>
             <img
               src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album"
               alt="Логотип министерства Удмуртии"
             />
-            <h1 className={classes.questionNumber}>Вопрос 7</h1>
+            <h1 className={classes.questionNumber}>Вопрос 6</h1>
             <p className={classes.questionText}>Хронические заболевания:</p>
             <Autocomplete
               disablePortal
@@ -502,7 +594,7 @@ function Questions(props) {
                   marginTop: "4em",
                   fontWeight: 900,
                 }}
-                onClick={handleStepNext}
+                onClick={calculationProcessStop}
                 variant="contained"
               >
                 Далее
@@ -511,13 +603,16 @@ function Questions(props) {
           </Paper>
         )}
 
-        {/* <Paper elevation={3} className={classes.profileContainer}>
+        {!poor && step8 && (
+          <Paper elevation={3} className={classes.profileContainer}>
             <img
               src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album"
               alt="Логотип министерства Удмуртии"
             />
             <h1 className={classes.questionNumber}>Ответ 1</h1>
-            <p className={classes.questionText}>Ваш доход превышает прожиточный минимум</p>
+            <p className={classes.questionText}>
+              Вам не нужна помощь. Так держать!
+            </p>
             <Button
               style={{
                 background: "#F93866",
@@ -525,12 +620,13 @@ function Questions(props) {
                 marginTop: "4em",
                 fontWeight: 900,
               }}
-              onClick={handleStepNext}
+              onClick={handleClose}
               variant="contained"
             >
               Закрыть
             </Button>
-          </Paper> */}
+          </Paper>
+        )}
 
         {/* <Paper elevation={3} className={classes.profileContainer}>
             <img
@@ -553,13 +649,16 @@ function Questions(props) {
             </Button>
           </Paper> */}
 
-        {/* <Paper elevation={3} className={classes.profileContainer}>
+        {poor && step8 && (
+          <Paper elevation={3} className={classes.profileContainer}>
             <img
               src="https://sun9-17.userapi.com/impg/cp7eNynJtS-3BstG6vALJ4lCv83YBtPFxAuBbQ/9vVPXJIq2zI.jpg?size=260x46&quality=96&sign=ff69fb9287c1da4786d3bf0a39b5f5e2&type=album"
               alt="Логотип министерства Удмуртии"
             />
             <h1 className={classes.questionNumber}>Ответ 3</h1>
-            <p className={classes.questionText}>В качестве помощи Вам будут начисляться льготы</p>
+            <p className={classes.questionText}>
+              В качестве помощи Вам будут начисляться льготы
+            </p>
             <Button
               style={{
                 background: "#F93866",
@@ -572,7 +671,8 @@ function Questions(props) {
             >
               Закрыть
             </Button>
-          </Paper> */}
+          </Paper>
+        )}
 
         {/* <Paper elevation={3} className={classes.profileContainer}>
           <img

@@ -152,7 +152,7 @@ function AuthPage(props) {
         <div>
           <Button
             className={classes.loginBtn}
-            style={{ background: "#F93866", padding: ".5em 3em" }}
+            style={{ background: "#F93866", padding: "1em 3em", marginTop: "4em", fontWeight:900 }}
             variant="contained"
             onClick={loginProccess}
           >
