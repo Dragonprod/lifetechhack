@@ -38,6 +38,7 @@ class Ans(Base):
 class User(Base):
     __tablename__ = "user"
     id = Column(Integer, primary_key=True)
+    is_admin = Column(Boolean)
     email = Column(String(128))
     password = Column(String(256))
     profile = relationship('UserDocument', lazy='joined')

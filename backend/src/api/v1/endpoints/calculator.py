@@ -24,9 +24,10 @@ async def start_calc(user_id: int, db: Session = Depends(get_db)):
     if user is None:
         return HTTPException(HTTP_404_NOT_FOUND)
 
+    steps = [1, 2, 3, 4, 5, 6, 7]
     report = Report(user_id=user.id)
     db.add(report)
-    db.commit()
+    report.rubrics.extend([Ans(step=step, ans="") for step in steps])
 
     return QuestionBaseResponse(user_id=user_id, report_id=report.id, step=1)
 
@@ -38,10 +39,8 @@ async def start_calc(user_id: int, db: Session = Depends(get_db)):
     status_code=HTTP_200_OK,
 )
 async def update(report_id: int, ans: str, step: int, db: Session = Depends(get_db)):
-    report = db.query(Report).filter(Report.id == report_id).first()
-    if report is None:
-        return HTTPException(HTTP_404_NOT_FOUND)
-    report.anses.append(Ans(step=step, ans=ans))
+    ans = db.query(Ans).filter(Ans.report_id ==
+                               report_id, Ans.step == step).first()
     return QuestionBaseResponse(user_id=report.user_id, report_id=report.id, step=step+1)
 
 

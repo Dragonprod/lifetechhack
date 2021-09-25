@@ -2,7 +2,7 @@ import React from "react";
 import { push } from "connected-react-router";
 import { connect } from "react-redux";
 import { setFormData } from "../store/dataStorage/actions";
-import { makeStyles, useTheme, withStyles } from '@material-ui/styles';
+import { makeStyles, useTheme, withStyles } from "@material-ui/styles";
 import Button from "@mui/material/Button";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -14,11 +14,14 @@ import StorageIcon from "@mui/icons-material/Storage";
 import QuestionAnswerRoundedIcon from "@mui/icons-material/QuestionAnswerRounded";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import Paper from "@mui/material/Paper";
 import Avatar from "@mui/material/Avatar";
 
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
 
+<<<<<<< HEAD
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
@@ -41,6 +44,9 @@ const illnesses = [
   { label: 'Гипертензия'},
 ];
 
+=======
+const married = [{ label: "Женат" }, { label: "Не женат" }];
+>>>>>>> 59ec7d18efc5109c627edb6e5e69415018a31c33
 
 const useStyles = makeStyles((theme) => ({
   mainContent: {
@@ -61,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
-    padding: "2em"
+    padding: "2em",
   },
   inputField: {
     background: "#E0E2DB",
@@ -130,31 +136,48 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
     color: "#000",
   },
-  
 }));
 
 function Questions(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [next, setNext] = React.useState(false);
 
   const handleClick = () => {
     setOpen(!open);
   };
+
+  const handleClick1 = () => {
+    setNext(!next);
+  };
+
   return (
     <div className={classes.mainGrid}>
       <header className={classes.mainHeader}>
         <h1 style={{ gridColumn: "1" }}>Мои обращения</h1>
         <ul className={classes.headerItemsList}>
           <li className={classes.li}>
-            <NotificationsActiveIcon fontSize="large" onClick={() => {console.log('NotifyClick')}}/>
+            <NotificationsActiveIcon
+              fontSize="large"
+              onClick={() => {
+                console.log("NotifyClick");
+              }}
+            />
           </li>
           <li className={classes.li}>
-              <Avatar sx={{ width: 48, height: 48 }} onClick={() => {console.log('Avatar Click')}}>IV</Avatar>
+            <Avatar
+              sx={{ width: 48, height: 48 }}
+              onClick={() => {
+                console.log("Avatar Click");
+              }}
+            >
+              IV
+            </Avatar>
           </li>
         </ul>
       </header>
-     
+
       <nav className={classes.sidebar}>
         <div className={classes.logoContainer}>
           <img
@@ -171,7 +194,7 @@ function Questions(props) {
           component="nav"
           aria-labelledby="nested-list-subheader"
         >
-          <ListItemButton onClick={() => console.log("Main click")}>
+          <ListItemButton onClick={() => props.push("/profile")}>
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>
@@ -187,7 +210,10 @@ function Questions(props) {
           </ListItemButton>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              <ListItemButton sx={{ pl: 2 }}>
+              <ListItemButton
+                sx={{ pl: 2 }}
+                onClick={() => props.push("/profile/info")}
+              >
                 <ListItemText style={{ marginLeft: 24 }} primary="Мои данные" />
               </ListItemButton>
 
@@ -208,7 +234,7 @@ function Questions(props) {
             </List>
           </Collapse>
 
-          <ListItemButton onClick={() => console.log("Questions click")}>
+          <ListItemButton onClick={() => props.push("/profile/requests")}>
             <ListItemIcon>
               <QuestionAnswerRoundedIcon />
             </ListItemIcon>

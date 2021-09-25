@@ -20,8 +20,8 @@
 
 ### Стек исользуемых технологий:
 
-1. Backend: FastAPI
-2. Frontend: React
+1. Backend: Python, FastAPI
+2. Frontend: React JS
 
 ### Демо:
 

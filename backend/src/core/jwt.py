@@ -22,8 +22,8 @@ def create_jwt_token(*, jwt_content: Dict[str, str], secret_key: str, expires_de
     return encoded
 
 
-def create_access_token(user_id: int, secret_key: str) -> str:
-    return create_jwt_token(jwt_content=JWTUser(user_id=user_id).dict(), secret_key=secret_key, expires_delta=timedelta(minutes=JWT_ACCESS_TOKEN_EXPIRE_MINUTES))
+def create_access_token(user, secret_key: str) -> str:
+    return create_jwt_token(jwt_content=JWTUser(user_id=user.id, is_admin=user.is_admin).dict(), secret_key=secret_key, expires_delta=timedelta(minutes=JWT_ACCESS_TOKEN_EXPIRE_MINUTES))
 
 
 def get_id_from_token(token: str, secret_key: str) -> str:

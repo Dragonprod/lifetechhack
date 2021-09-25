@@ -135,7 +135,7 @@ function RequestsEmpty(props) {
           component="nav"
           aria-labelledby="nested-list-subheader"
         >
-          <ListItemButton onClick={() => console.log("Main click")}>
+          <ListItemButton onClick={() => props.push('/profile')}>
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>
@@ -151,7 +151,7 @@ function RequestsEmpty(props) {
           </ListItemButton>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              <ListItemButton sx={{ pl: 2 }}>
+              <ListItemButton sx={{ pl: 2 }} onClick={() => props.push('/profile/info')}>
                 <ListItemText style={{ marginLeft: 24 }} primary="Мои данные" />
               </ListItemButton>
 
@@ -172,7 +172,7 @@ function RequestsEmpty(props) {
             </List>
           </Collapse>
 
-          <ListItemButton onClick={() => console.log("Questions click")}>
+          <ListItemButton onClick={() => props.push('/profile/requests')}>
             <ListItemIcon>
               <QuestionAnswerRoundedIcon />
             </ListItemIcon>
