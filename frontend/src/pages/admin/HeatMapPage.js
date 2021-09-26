@@ -3,7 +3,7 @@ import GoogleMapReact from "google-map-react";
 
 function HeatMapPage(props) {
   const apiKey = "AIzaSyDTYHj55etv7qUW1VUNkloSP6JDPCPWEj0";
-  const mapState = { center: [56.852593, 53.204843], zoom: 8 };
+  const mapState = { center: [56.852593, 53.204843], zoom: 12 };
   const heatMapData = {
     positions: [
       { lat: 56.852576, lng: 53.2019 },
@@ -53,7 +53,7 @@ function HeatMapPage(props) {
 
     ],
     options: {
-      radius: 20,
+      radius: 40,
       opacity: 0.6,
     },
   };

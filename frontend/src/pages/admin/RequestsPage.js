@@ -2,8 +2,26 @@ import React from "react";
 import { push } from "connected-react-router";
 import { connect } from "react-redux";
 import { setFormData } from "../../store/dataStorage/actions";
-import { makeStyles, useTheme, withStyles } from '@material-ui/styles';
-
+import { makeStyles, useTheme, withStyles } from "@material-ui/styles";
+import Button from "@mui/material/Button";
+import List from "@mui/material/List";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import Collapse from "@mui/material/Collapse";
+import HomeIcon from "@mui/icons-material/Home";
+import StorageIcon from "@mui/icons-material/Storage";
+import QuestionAnswerRoundedIcon from "@mui/icons-material/QuestionAnswerRounded";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
+import Paper from "@mui/material/Paper";
+import Avatar from "@mui/material/Avatar";
+import { Line } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
+import API from "../../api/api";
+import MapIcon from '@mui/icons-material/Map';
+import InfoIcon from '@mui/icons-material/Info';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -71,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
     background: "#F8F8FA",
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   profileContainer: {
     background: "#FFFFFF",
@@ -113,7 +131,78 @@ function RequestsPage(props) {
 
   return (
     <div className={classes.mainGrid}>
-      <h1>RequestsPage</h1>
+      <header className={classes.mainHeader}>
+        <h1 style={{ gridColumn: "1" }}>Главная</h1>
+        <ul className={classes.headerItemsList}>
+          <li className={classes.li}>
+            <NotificationsActiveIcon
+              fontSize="large"
+              onClick={() => {
+                console.log("NotifyClick");
+              }}
+            />
+          </li>
+          <li className={classes.li}>
+            <Avatar
+              sx={{ width: 48, height: 48 }}
+              onClick={() => {
+                console.log("Avatar Click");
+              }}
+              src="https://mui.com/static/images/avatar/1.jpg"
+            ></Avatar>
+          </li>
+        </ul>
+      </header>
+
+      <nav className={classes.sidebar}>
+        <div className={classes.logoContainer}>
+          <img
+            className={classes.udmurtLogo}
+            src="https://abali.ru/wp-content/uploads/2013/01/gerb_udmurtii.png"
+            alt="Герб Удмуртии"
+          />
+          <h2 className={classes.udmurtTitle}>
+            Республика <br /> Удмуртия
+          </h2>
+        </div>
+
+        <List
+          sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+          component="nav"
+          aria-labelledby="nested-list-subheader"
+        >
+          <ListItemButton onClick={() => props.push("/admin")}>
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText primary="Главная" />
+          </ListItemButton>
+
+          <ListItemButton onClick={() => props.push("/admin/heatmap")}>
+            <ListItemIcon>
+              <MapIcon />
+            </ListItemIcon>
+            <ListItemText primary="Тепловая карта" />
+          </ListItemButton>
+
+          <ListItemButton onClick={() => props.push("/admin/rmap")}>
+            <ListItemIcon>
+              <InfoIcon />
+            </ListItemIcon>
+            <ListItemText primary="Статистика по регионам" />
+          </ListItemButton>
+
+          <ListItemButton onClick={() => props.push("/admin/requests")}>
+            <ListItemIcon>
+              <QuestionAnswerRoundedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Обращения" />
+          </ListItemButton>
+        </List>
+      </nav>
+      <div className={classes.mainContent}>
+        <h1>Таблица обращений граждан области к системе UdmHelp</h1>
+      </div>
     </div>
   );
 }
@@ -127,4 +216,3 @@ export default connect(
   null,
   mapDispatchToProps
 )(withStyles(useStyles)(RequestsPage));
-
