@@ -13,8 +13,6 @@ import HeatMapPage from "../../../pages/admin/HeatMapPage";
 import RegStatsMapPage from "../../../pages/admin/RegStatsMapPage";
 import RequestsPage from "../../../pages/admin/RequestsPage";
 
-import MaximkaPage from "../../../pages/admin/Maximka";
-
 const routes = (
   <div>
     <Route exact path="/" component={LandingPage} />
@@ -40,7 +38,6 @@ const routes = (
           <Route path={`${url}/heatmap`} component={HeatMapPage} />
           <Route path={`${url}/rmap`} component={RegStatsMapPage} />
           <Route path={`${url}/requests`} component={RequestsPage} />
-          <Route path={`${url}/maximka`} component={MaximkaPage} />
         </>
       )}
     />

@@ -20,6 +20,8 @@ import Avatar from "@mui/material/Avatar";
 import { Line } from "react-chartjs-2";
 import { Bar } from "react-chartjs-2";
 import API from "../../api/api";
+import MapIcon from '@mui/icons-material/Map';
+import InfoIcon from '@mui/icons-material/Info';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -149,9 +151,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     gap: "0 10px",
   },
-  contentContainer:{
-    maxWidth: "1400px"
-  }
 }));
 
 function AdminProfilePage(props) {
@@ -283,14 +282,14 @@ function AdminProfilePage(props) {
 
           <ListItemButton onClick={() => props.push("/admin/heatmap")}>
             <ListItemIcon>
-              <QuestionAnswerRoundedIcon />
+              <MapIcon />
             </ListItemIcon>
             <ListItemText primary="Тепловая карта" />
           </ListItemButton>
 
           <ListItemButton onClick={() => props.push("/admin/rmap")}>
             <ListItemIcon>
-              <QuestionAnswerRoundedIcon />
+              <InfoIcon />
             </ListItemIcon>
             <ListItemText primary="Статистика по регионам" />
           </ListItemButton>
@@ -304,8 +303,8 @@ function AdminProfilePage(props) {
         </List>
       </nav>
       <div className={classes.mainContent}>
-        <div className={classes.contentContainer}>
-          <Paper elevation={3} style={{ display: "flex", padding: "1.5em" }}>
+        <div style={{maxWidth: "1400px"}}>
+          <Paper elevation={3} style={{ display: "flex", padding: "1.5em" }} onClick={() => props.push('/admin/heatmap')}>
             <img
               src="https://sun9-24.userapi.com/impg/dhZHq7u-0tBfT5-YqIVgfp1nPE-mQFOjduK9iQ/S8flo6ydux0.jpg?size=500x349&quality=96&sign=30f3f2ce424b25509866efa8de790e4e&type=album"
               alt="Тепловая карта"
@@ -542,9 +541,8 @@ function AdminProfilePage(props) {
           <Paper style={{ width: "100%", marginTop: "5em" }}>
             <Bar data={data} />
           </Paper>
-        
         </div>
-        </div>
+      </div>
     </div>
   );
 }
