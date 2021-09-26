@@ -10,3 +10,4 @@ pyjwt
 bcrypt
 passlib
 orjson
+overpy
