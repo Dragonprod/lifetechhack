@@ -83,6 +83,20 @@ function AuthPage(props) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
+  const parseJwt = (token) => {
+    var base64Url = token.split(".")[1];
+    var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    var jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split("")
+        .map(function (c) {
+          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join("")
+    );
+
+    return JSON.parse(jsonPayload);
+  };
   const loginProccess = async (e) => {
     e.preventDefault();
 
@@ -95,7 +109,17 @@ function AuthPage(props) {
 
     if (res.data.status_code == 400) setError(true);
     else if (res.data.status_code == 404) setError(true);
-    else redirect.push("/profile");
+    
+    try{
+      const parse = parseJwt(res.data.token)
+      if (parse.is_admin == true) redirect.push("/admin");
+      else if (parse.is_admin == false) redirect.push("/profile");
+    }
+    catch(e){
+      console.log(e)
+    }
+    
+
   };
 
   const handleClose = (event, reason) => {
@@ -152,7 +176,12 @@ function AuthPage(props) {
         <div>
           <Button
             className={classes.loginBtn}
-            style={{ background: "#F93866", padding: "1em 3em", marginTop: "4em", fontWeight:900 }}
+            style={{
+              background: "#F93866",
+              padding: "1em 3em",
+              marginTop: "4em",
+              fontWeight: 900,
+            }}
             variant="contained"
             onClick={loginProccess}
           >
