@@ -70,17 +70,16 @@ function LandingPage(props) {
           <a className={classes.ref} href="#">Главная</a>
           <a className={classes.ref} href="#">Проблематика</a>
           <a className={classes.ref} href="#">Решение</a>
-          <a className={classes.ref} style={{border: "1px solid #EF2D56", borderRadius: "5px", marginLeft: "4em", marginRight: "2em"}} href="/auth">Зайти в ЛК</a>
+          <a className={classes.ref} style={{border: "1px solid #EF2D56", borderRadius: "5px", marginLeft: "4em", marginRight: "2em"}} href="/login">Зайти в ЛК</a>
           <a className={classes.ref} style={{border: "1px solid #3D348B", borderRadius: "5px"}} href="/admin">Зайти в админ панель</a>
         </nav>
       </header>
       <section className={classes.section}>
         <div className={classes.contentContainer}>
           <div className={classes.textBox}>
-            <Paper style={{padding: "1em"}}>
+           
               <h1 style={{color: "#EF2D56", fontSize: "48px", fontWeight: 900}}>Современные проблемы требуют современных решений!</h1>
-              <p style={{fontSize: "24px"}}>lorem</p>
-            </Paper>
+
           </div>
           <img src="https://image.freepik.com/free-vector/team-starting-project_74855-4818.jpg" alt="Изображение"/>
         </div>
@@ -92,17 +91,17 @@ function LandingPage(props) {
             <Paper className={classes.problemCard}>
               <h2>Множество неструктурированных данных</h2>
               <img className={classes.cardsImg} src="https://sun1-26.userapi.com/impg/CwvWECW-RaGro0hH0Fa_yPGbV1rIW-qC6QAUyw/U3pwwauWEKU.jpg?size=406x306&quality=96&sign=f6759a2630662309b435a2e5e8334d21&type=album" alt=""/>
-              <p>Lorem</p>
+              <p>Администрация района не может быстро получать актуальную информацию по профилю бедности в регионе</p>
             </Paper>
             <Paper className={classes.problemCard}>
               <h2>Нет удобного сервиса для отслеживания статистики</h2>
               <img className={classes.cardsImg} src="https://sun9-29.userapi.com/impg/KmJPriT6P68LJI69Ft0cUiciy3Ixr7k-JvkXEw/zFaAeP0PewY.jpg?size=406x306&quality=96&sign=1db980c9a434507b03183251c67ee13a&type=album" alt=""/>
-              <p>Lorem</p>
+              <p>Жители республики не могут получать помощь онлайн</p>
             </Paper>
             <Paper className={classes.problemCard}>
               <h2>Нет единой базы для быстрого формирования списков</h2>
               <img className={classes.cardsImg} src="https://sun9-3.userapi.com/impg/KIpHJ8XB_vxfkAJ29-T2fML-BA0MhNxYaBi5QQ/bVdgLltg6Uk.jpg?size=406x306&quality=96&sign=512c66e0edf7df2b7dcfdd31d35a576c&type=album" alt=""/>
-              <p>Lorem</p>
+              <p>Существуют трудности между взаимодействием гос. структур, поэтому не удавалось создать единую базу</p>
             </Paper>
           </div>
         </div>
@@ -112,7 +111,10 @@ function LandingPage(props) {
           <div className={classes.textBox}>
             <Paper style={{marginRight: "2em", padding: "1em"}}>
               <h1 style={{color: "#EF2D56", fontSize: "48px", fontWeight: 900}}>Наше решение!</h1>
-              <p style={{fontSize: "24px"}}>lorem</p>
+              <p style={{fontSize: "24px"}}>Социальный калькулятор для граждан</p>
+              <p style={{fontSize: "24px"}}>Тепловая карта бедности</p>
+              <p style={{fontSize: "24px"}}>Статистика по регионам</p>
+              <p style={{fontSize: "24px"}}>Трекинг обращений граждан</p>
             </Paper>
           </div>
           <img style={{width: "800px"}} src="https://sun9-74.userapi.com/impg/Ajhnqjxwq0qOOOQl9LlyFr2oW7RBFBewwH71Jw/-Ssg86eRTk0.jpg?size=1232x880&quality=96&sign=e3078bf0dbcf7b9cbd94c57853d773ac&type=album" alt="Изображение"/>
