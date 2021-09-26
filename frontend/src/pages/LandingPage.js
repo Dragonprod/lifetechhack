@@ -17,10 +17,6 @@ function LandingPage(props) {
 
   return (
     <div>
-      {/* <div className="logo-container">
-              <img className="udmurt-logo" src="" alt="Герб Удмуртии"/>
-              <h2 className="udmurt-title">Республика Удмуртия</h2>
-          </div> */}
       <Button
         variant="outlined"
         onClick={() => {
