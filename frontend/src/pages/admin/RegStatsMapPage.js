@@ -112,6 +112,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    gap: "0 3em"
   },
   profileContainer: {
     background: "#FFFFFF",
@@ -152,6 +153,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
   },
+  graphOptions:{
+    padding: "2em"
+  }
 }));
 
 function RegStatsMapPage(props) {
@@ -1416,7 +1420,7 @@ function RegStatsMapPage(props) {
           </YMaps>
         </div>
 
-        <div>
+        <Paper className={classes.graphOptions}>
           <Autocomplete
             disablePortal
             id="combo-box-demo"
@@ -1427,7 +1431,7 @@ function RegStatsMapPage(props) {
           />
           <Bar data={data} options={options} />
           <Bar data={data} options={options} />
-        </div>
+        </Paper>
       </div>
     </div>
   );
