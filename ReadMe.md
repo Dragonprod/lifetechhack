@@ -70,6 +70,6 @@ sudo systemctl status docker
 ## Разработчики:
 
 **Васечкин Артём FullStack** - [@DragonProd](https://t.me/DragonProd)\
-**Шевченко Артём Backend** - [@Shmyaks](https://t.me/Shmyaks)\
-**Коробов Артём Frontend** - [@maxcore25](https://t.me/maxcore25)\
+**Шевченко Максим Backend** - [@Shmyaks](https://t.me/Shmyaks)\
+**Коробов Максим Frontend** - [@maxcore25](https://t.me/maxcore25)\
 **Павлов Сергей Backend** - [@thebordev](https://t.me/thebordev)
